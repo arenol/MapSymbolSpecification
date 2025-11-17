@@ -1,0 +1,470 @@
+<?xml version="1.0" encoding="utf-8"?>
+<IOFMapSymbols id="ISO17-2" version="6" language="en" issued-date="2024-15-01" valid-date="2025-01-01" mapscale="15000">
+	<BaseColors>
+		<color id="BLACK" cmyk="0,0,0,1"/> 
+        <color id="CYAN" cmyk="1,0,0,0" />
+        <color id="BROWN" cmyk="0.25,0.75,1.0,0">
+            <calibration standard="PMS" value="PANTONE 7608 CP"/>
+        </color> 
+        <color id="YELLOW" cmyk="0,0.27,0.79,0">
+            <calibration standard="PMS" value="PANTONE 136 CP"/>
+        </color>
+        <color id="WHITE" cmyk="0,0,0,0" />
+        <color id="PURPLE" cmyk="0.35,0.85,0,0" />
+	</BaseColors>
+	<ColorLayers>
+        <layer id="uprPurple" name="Upper purple for course overprint" color="PURPLE" />
+        <layer id="black100" name="Black 100%" color="BLACK" oveprint="yes" />
+        <layer id="brown100" name="Brown 100% line symbols" color="BROWN" overprint="yes" />
+        <layer id="blue100" name="Blue 100% point symbols" color="CYAN" />
+        <layer id="blue70" name="Blue 70% area symbols" color="CYAN" tint="0.7"/>
+        <layer id="white" name="White" color="WHITE" />
+        <layer id="yellow100" name="Yellow 100% area symbols" color="YELLOW"/>
+	</ColorLayers>
+	<Symbols>
+		<symbol type="point" id="204" name="Boulder">
+            <description>A distinct boulder (should be higher than 1 m)</description>
+            <circle cx="0" cy="0" r="0.2" fill="black100" />
+        </symbol>
+        
+        <symbol type="point" id="207" name="Boulder Cluster">
+            <path fill="black100" d="M 0 0.462 L -0.4 -0.23 L 0.4 -0.23 Z" />
+        </symbol>
+        
+        <symbol type="point" id="521.1" name="Building, minumum size" rotatable="yes">
+            <rect x="-0.25" y="-0.25" width="0.5" height="0.5" fill="black100" />
+        </symbol>
+        
+        <symbol type="point" id="523.1" name="Ruin, minumum symmbol" rotatable="yes">
+            <rect x="-0.32" y="-0.32" with="0.64" height="0.64" stroke="black100" stroke-width="0.16"/>
+        </symbol>
+        
+        <symbol type="point" id="524" name="High Tower">
+            <circle cx="0" cy="0" r="0.4" fill="black100" />
+            <path stroke="black100" stroke-width="0.16" d="M 0.7 0 L -0.7 0"/>
+            <path stroke="black100" stroke-width="0.16" d="M 0 0.7 L 0 -0.7"/>
+        </symbol>
+        
+        <symbol type="line" id="301.1" name="Water boundary">
+            <path stroke="black100" sroke-width="0.16" />
+        </symbol>
+
+        <symbol type="area" id="300" name="Uncrossable body of water" outline="301.1">
+            <path fill="blue70"/>
+        </symbol>
+        
+        <symbol type="line" id="202.1" name="Passable vertical cliff">
+            <path strok="black100" stroke-width="0.25" stroke-linecap="round" stroke-linejoin="round" />
+        </symbol>
+        
+        <symbol type="line" id="506" name="Small footpath">
+            <path stroke="black100" stroke-width="0.18" stroke-dasharray="1.0,0.25" stroke-linecap="butt" stroke-linejoin="round" />
+        </symbol>
+        
+        <symbol type="line" id="513.1" name="Wall">
+            <path stroke="black100" stroke-width="0.14"/>
+            <stroke-decoration type="regular" spacing="2.0" offset="0.8">
+                <circle cx="0.0" cy="0.0" r="0.2" fill="black100"/>
+            </stroke-decoration>
+        </symbol>
+        <symbol type="line" id="511.1" name="Major powerline, min. width">
+            <path stroke="black100" stroke-width="0.14" stroke-offset="0.2"/>
+            <path stroke="black100" stroke-width="0.14" stroke-offset="-0.2"/>
+            <stroke-decoration type="dash-point">
+                <path stroke="black100" stroke-width="0.2" d="M 0 0.57 L 0 -0.57" />
+            </stroke-decoration>
+        </symbol>
+        <symbol type="line" id="309" name="Narrow Marsh">
+            <stroke-decoration type="regular" spacing="0.45" offset="0">
+                <circle cx="0.0" cy="0.0" r="0.125" fill="blue100"/>
+            </stroke-decoration>
+        </symbol>
+        
+        <symbol type="area" id="401" name="Open Land">
+            <path fill="yellow100"/>
+        </symbol>
+
+        <symbol type="area" id="403" name="Open Land with Scattered Trees">
+            <path fill="yellow100"/>
+            <pattern x="0" y="0" width="0.7" height="0.7" rotation="45" clip="yes">
+                <circle cx="0.35" cy="0.35" r="0.2" fill="white" />
+            </pattern>
+        </symbol>
+        
+        <symbol type="area" id="301" name="Uncrossable body of water, 70%" outline="301.1">
+            <path fill="blue70" />
+        </symbol>
+        
+        <symbol type="area" id="308" name="Marsh">
+            <hatch-pattern stroke="blue100" stroke-width="0.1" spacing="0.3"/>
+        </symbol>
+        
+        <symbol type="area" id="310" name="Indistinct Marsh">
+            <pattern x="0" y="0" width="1.15" height="0.3" tiling="brick">
+                <path stroke="blue100" stroke-width="0.1" d="M 0.125 0.15 L 1.025 0.15" />
+            </pattern>
+        </symbol>
+        
+        <symbol type="area" id="709.0" name="Out of Bounds area">
+            <hatch-pattern stroke="uprPurple" stroke-width="0.2" spacing="1.2" rotation="45"/>
+            <hatch-pattern stroke="uprPurple" stroke-width="0.2" spacing="1.2" rotation="-45"/>  
+        </symbol>
+
+        <symbol type="text" id="102.1" name="Index Contour Height" rotatable="yes">
+            <text fill="brown100" font-size="6pt"/>
+        </symbol>
+         
+        <symbol type="area" id="211" name="Stony ground, walk">
+            <pattern x="-3.963" y="-3.963" width="7.927" height="7.927">
+                <circle fill="black100" cx="-0.437" cy="-2.986" r="0.9" />
+                <circle fill="black100" cx="-0.464" cy="-3.676" r="0.9" />
+                <circle fill="black100" cx="-0.492" cy="0.978" r="0.9" />
+                <circle fill="black100" cx="-0.517" cy="-1.667" r="0.9" />
+                <circle fill="black100" cx="-0.545" cy="3.508" r="0.9" />
+                <circle fill="black100" cx="-0.604" cy="2.545" r="0.9" />
+                <circle fill="black100" cx="-0.631" cy="-1.225" r="0.9" />
+                <circle fill="black100" cx="-0.631" cy="0.535" r="0.9" />
+                <circle fill="black100" cx="-0.631" cy="0.095" r="0.9" />
+                <circle fill="black100" cx="-0.631" cy="2.959" r="0.9" />
+                <circle fill="black100" cx="-0.658" cy="-0.482" r="0.9" />
+                <circle fill="black100" cx="-0.658" cy="-2.599" r="0.9" />
+                <circle fill="black100" cx="-0.658" cy="1.802" r="0.9" />
+                <circle fill="black100" cx="-0.712" cy="1.333" r="0.9" />
+                <circle fill="black100" cx="-0.739" cy="2.135" r="0.9" />
+                <circle fill="black100" cx="-0.739" cy="3.784" r="0.9" />
+                <circle fill="black100" cx="-0.766" cy="-0.785" r="0.9" />
+                <circle fill="black100" cx="-0.766" cy="-3.373" r="0.9" />
+                <circle fill="black100" cx="-0.080" cy="-1.333" r="0.9" />
+                <circle fill="black100" cx="-0.824" cy="-1.996" r="0.9" />
+                <circle fill="black100" cx="-0.852" cy="-3.068" r="0.9" />
+                <circle fill="black100" cx="-0.877" cy="-2.351" r="0.9" />
+                <circle fill="black100" cx="-0.906" cy="-1.582" r="0.9" />
+                <circle fill="black100" cx="-0.906" cy="-3.784" r="0.9" />
+                <circle fill="black100" cx="-0.960" cy="0.785" r="0.9" />
+                <circle fill="black100" cx="-0.986" cy="-0.095" r="0.9" />
+                <circle fill="black100" cx="-0.986" cy="3.234" r="0.9" />
+                <circle fill="black100" cx="-1.013" cy="3.620" r="0.9" />
+                <circle fill="black100" cx="-1.039" cy="-1.004" r="0.9" />
+                <circle fill="black100" cx="-1.072" cy="-0.563" r="0.9" />
+                <circle fill="black100" cx="-1.072" cy="-2.738" r="0.9" />
+                <circle fill="black100" cx="-1.072" cy="0.288" r="0.9" />
+                <circle fill="black100" cx="-1.099" cy="1.225" r="0.9" />
+                <circle fill="black100" cx="-1.099" cy="1.667" r="0.9" />
+                <circle fill="black100" cx="-1.099" cy="2.491" r="0.9" />
+                <circle fill="black100" cx="-1.126" cy="1.996" r="0.9" />
+                <circle fill="black100" cx="-1.153" cy="-1.801" r="0.9" />
+                <circle fill="black100" cx="-1.180" cy="2.819" r="0.9" />
+                <circle fill="black100" cx="-1.206" cy="-3.563" r="0.9" />
+                <circle fill="black100" cx="-1.320" cy="-1.418" r="0.9" />
+                <circle fill="black100" cx="-1.320" cy="-2.243" r="0.9" />
+                <circle fill="black100" cx="-1.320" cy="3.842" r="0.9" />
+                <circle fill="black100" cx="-0.136" cy="-1.693" r="0.9" />
+                <circle fill="black100" cx="-0.136" cy="1.145" r="0.9" />
+                <circle fill="black100" cx="-1.374" cy="-0.095" r="0.9" />
+                <circle fill="black100" cx="-1.374" cy="0.563" r="0.9" />
+                <circle fill="black100" cx="-1.396" cy="-3.288" r="0.9" />
+                <circle fill="black100" cx="-1.456" cy="-0.649" r="0.9" />
+                <circle fill="black100" cx="-1.456" cy="-1.886" r="0.9" />
+                <circle fill="black100" cx="-1.482" cy="1.004" r="0.9" />
+                <circle fill="black100" cx="-1.482" cy="3.154" r="0.9" />
+                <circle fill="black100" cx="-1.508" cy="-2.932" r="0.9" />
+                <circle fill="black100" cx="-1.508" cy="2.357" r="0.9" />
+                <circle fill="black100" cx="-1.536" cy="-1.112" r="0.9" />
+                <circle fill="black100" cx="-1.536" cy="-2.545" r="0.9" />
+                <circle fill="black100" cx="-1.536" cy="1.474" r="0.9" />
+                <circle fill="black100" cx="-1.536" cy="1.942" r="0.9" />
+                <circle fill="black100" cx="-1.567" cy="3.482" r="0.9" />
+                <circle fill="black100" cx="-1.621" cy="-3.869" r="0.9" />
+                <circle fill="black100" cx="-0.163" cy="0.730" r="0.9" />
+                <circle fill="black100" cx="-0.163" cy="1.886" r="0.9" />
+                <circle fill="black100" cx="-1.649" cy="0.234" r="0.9" />
+                <circle fill="black100" cx="-1.729" cy="-2.297" r="0.9" />
+                <circle fill="black100" cx="-1.729" cy="0.703" r="0.9" />
+                <circle fill="black100" cx="-1.729" cy="2.711" r="0.9" />
+                <circle fill="black100" cx="-1.757" cy="-1.721" r="0.9" />
+                <circle fill="black100" cx="-1.757" cy="-3.481" r="0.9" />
+                <circle fill="black100" cx="-1.816" cy="-0.563" r="0.9" />
+                <circle fill="black100" cx="-1.842" cy="1.198" r="0.9" />
+                <circle fill="black100" cx="-1.868" cy="-0.148" r="0.9" />
+                <circle fill="black100" cx="-1.868" cy="2.189" r="0.9" />
+                <circle fill="black100" cx="-0.188" cy="-2.599" r="0.9" />
+                <circle fill="black100" cx="-0.188" cy="2.270" r="0.9" />
+                <circle fill="black100" cx="-0.188" cy="3.348" r="0.9" />
+                <circle fill="black100" cx="-1.924" cy="-1.361" r="0.9" />
+                <circle fill="black100" cx="-1.924" cy="3.730" r="0.9" />
+                <circle fill="black100" cx="-1.950" cy="3.234" r="0.9" />
+                <circle fill="black100" cx="-1.978" cy="-0.978" r="0.9" />
+                <circle fill="black100" cx="-2.004" cy="-3.095" r="0.9" />
+                <circle fill="black100" cx="-2.004" cy="1.693" r="0.9" />
+                <circle fill="black100" cx="-2.063" cy="2.878" r="0.9" />
+                <circle fill="black100" cx="-2.089" cy="-2.050" r="0.9" />
+                <circle fill="black100" cx="-2.089" cy="-2.657" r="0.9" />
+                <circle fill="black100" cx="-2.089" cy="-3.784" r="0.9" />
+                <circle fill="black100" cx="-2.089" cy="2.545" r="0.9" />
+                <circle fill="black100" cx="-0.216" cy="-3.314" r="0.9" />
+                <circle fill="black100" cx="-0.216" cy="2.878" r="0.9" />
+                <circle fill="black100" cx="-2.171" cy="0.590" r="0.9" />
+                <circle fill="black100" cx="-2.197" cy="-0.703" r="0.9" />
+                <circle fill="black100" cx="-2.197" cy="-1.608" r="0.9" />
+                <circle fill="black100" cx="-2.197" cy="1.086" r="0.9" />
+                <circle fill="black100" cx="-2.197" cy="0.126" r="0.9" />
+                <circle fill="black100" cx="-2.279" cy="-0.401" r="0.9" />
+                <circle fill="black100" cx="-2.284" cy="3.397" r="0.9" />
+                <circle fill="black100" cx="-2.310" cy="1.526" r="0.9" />
+                <circle fill="black100" cx="-2.310" cy="3.842" r="0.9" />
+                <circle fill="black100" cx="-2.338" cy="-2.382" r="0.9" />
+                <circle fill="black100" cx="-2.338" cy="-3.536" r="0.9" />
+                <circle fill="black100" cx="-2.338" cy="1.996" r="0.9" />
+                <circle fill="black100" cx="-2.364" cy="-3.068" r="0.9" />
+                <circle fill="black100" cx="-2.418" cy="-1.198" r="0.9" />
+                <circle fill="black100" cx="-0.242" cy="-0.535" r="0.9" />
+                <circle fill="black100" cx="-2.473" cy="2.437" r="0.9" />
+                <circle fill="black100" cx="-2.473" cy="2.878" r="0.9" />
+                <circle fill="black100" cx="-2.527" cy="0.428" r="0.9" />
+                <circle fill="black100" cx="-2.558" cy="-0.838" r="0.9" />
+                <circle fill="black100" cx="-2.585" cy="-0.121" r="0.9" />
+                <circle fill="black100" cx="-2.585" cy="-1.996" r="0.9" />
+                <circle fill="black100" cx="-2.585" cy="-2.684" r="0.9" />
+                <circle fill="black100" cx="-2.585" cy="0.950" r="0.9" />
+                <circle fill="black100" cx="-2.608" cy="3.458" r="0.9" />
+                <circle fill="black100" cx="-2.639" cy="1.418" r="0.9" />
+                <circle fill="black100" cx="-2.693" cy="-1.526" r="0.9" />
+                <circle fill="black100" cx="-0.271" cy="0.316" r="0.9" />
+                <circle fill="black100" cx="-2.747" cy="1.776" r="0.9" />
+                <circle fill="black100" cx="-2.776" cy="-3.095" r="0.9" />
+                <circle fill="black100" cx="-2.834" cy="3.098" r="0.9" />
+                <circle fill="black100" cx="-2.834" cy="3.730" r="0.9" />
+                <circle fill="black100" cx="-2.860" cy="0.154" r="0.9" />
+                <circle fill="black100" cx="-2.860" cy="2.216" r="0.9" />
+                <circle fill="black100" cx="-2.887" cy="-2.297" r="0.9" />
+                <circle fill="black100" cx="-2.887" cy="-2.738" r="0.9" />
+                <circle fill="black100" cx="-2.887" cy="0.622" r="0.9" />
+                <circle fill="black100" cx="-2.914" cy="-0.676" r="0.9" />
+                <circle fill="black100" cx="-2.914" cy="-1.171" r="0.9" />
+                <circle fill="black100" cx="-2.914" cy="1.086" r="0.9" />
+                <circle fill="black100" cx="-2.914" cy="2.684" r="0.9" />
+                <circle fill="black100" cx="-2.969" cy="-3.428" r="0.9" />
+                <circle fill="black100" cx="-0.298" cy="-0.978" r="0.9" />
+                <circle fill="black100" cx="-3.022" cy="-0.314" r="0.9" />
+                <circle fill="black100" cx="-3.053" cy="-1.801" r="0.9" />
+                <circle fill="black100" cx="-3.107" cy="-3.838" r="0.9" />
+                <circle fill="black100" cx="-3.107" cy="1.914" r="0.9" />
+                <circle fill="black100" cx="-3.162" cy="1.474" r="0.9" />
+                <circle fill="black100" cx="-3.162" cy="3.348" r="0.9" />
+                <circle fill="black100" cx="-3.188" cy="-2.490" r="0.9" />
+                <circle fill="black100" cx="-3.216" cy="2.410" r="0.9" />
+                <circle fill="black100" cx="-3.216" cy="0.316" r="0.9" />
+                <circle fill="black100" cx="-0.329" cy="-0.180" r="0.9" />
+                <circle fill="black100" cx="-3.302" cy="-3.013" r="0.9" />
+                <circle fill="black100" cx="-3.329" cy="-1.198" r="0.9" />
+                <circle fill="black100" cx="-3.329" cy="-0.180" r="0.9" />
+                <circle fill="black100" cx="-3.329" cy="-3.373" r="0.9" />
+                <circle fill="black100" cx="-3.329" cy="2.851" r="0.9" />
+                <circle fill="black100" cx="-3.329" cy="3.757" r="0.9" />
+                <circle fill="black100" cx="-3.355" cy="-0.757" r="0.9" />
+                <circle fill="black100" cx="-3.355" cy="1.032" r="0.9" />
+                <circle fill="black100" cx="-3.382" cy="-1.886" r="0.9" />
+                <circle fill="black100" cx="-3.409" cy="-1.526" r="0.9" />
+                <circle fill="black100" cx="-3.548" cy="-2.630" r="0.9" />
+                <circle fill="black100" cx="-3.548" cy="-3.676" r="0.9" />
+                <circle fill="black100" cx="-3.548" cy="1.693" r="0.9" />
+                <circle fill="black100" cx="-3.548" cy="2.135" r="0.9" />
+                <circle fill="black100" cx="-0.356" cy="1.500" r="0.9" />
+                <circle fill="black100" cx="-0.356" cy="3.842" r="0.9" />
+                <circle fill="black100" cx="-3.577" cy="0.703" r="0.9" />
+                <circle fill="black100" cx="-3.577" cy="3.126" r="0.9" />
+                <circle fill="black100" cx="-3.604" cy="-2.243" r="0.9" />
+                <circle fill="black100" cx="-3.604" cy="2.657" r="0.9" />
+                <circle fill="black100" cx="-3.631" cy="0.288" r="0.9" />
+                <circle fill="black100" cx="-3.658" cy="1.366" r="0.9" />
+                <circle fill="black100" cx="-3.684" cy="-0.535" r="0.9" />
+                <circle fill="black100" cx="-3.684" cy="3.563" r="0.9" />
+                <circle fill="black100" cx="-3.738" cy="-3.288" r="0.9" />
+                <circle fill="black100" cx="-3.766" cy="-0.095" r="0.9" />
+                <circle fill="black100" cx="-3.766" cy="-1.032" r="0.9" />
+                <circle fill="black100" cx="-3.824" cy="1.058" r="0.9" />
+                <circle fill="black100" cx="-3.824" cy="1.802" r="0.9" />
+                <circle fill="black100" cx="-0.383" cy="-2.077" r="0.9" />
+                <circle fill="black100" cx="-3.852" cy="-1.776" r="0.9" />
+                <circle fill="black100" cx="-3.877" cy="-2.572" r="0.9" />
+                <circle fill="black100" cx="-3.877" cy="3.262" r="0.9" />
+                <circle fill="black100" cx="-3.877" cy="3.869" r="0.9" />
+                <circle fill="black100" cx="-3.906" cy="-2.932" r="0.9" />
+                <circle fill="black100" cx="-3.932" cy="-1.418" r="0.9" />
+                <circle fill="black100" cx="-3.932" cy="2.243" r="0.9" />
+                <circle fill="black100" cx="0.446" cy="-0.095" r="0.9" />
+                <circle fill="black100" cx="0.005" cy="-0.121" r="0.9" />
+                <circle fill="black100" cx="0.500" cy="2.357" r="0.9" />
+                <circle fill="black100" cx="0.500" cy="3.563" r="0.9" />
+                <circle fill="black100" cx="0.526" cy="-0.757" r="0.9" />
+                <circle fill="black100" cx="0.554" cy="-3.508" r="0.9" />
+                <circle fill="black100" cx="0.554" cy="3.950" r="0.9" />
+                <circle fill="black100" cx="0.582" cy="-2.657" r="0.9" />
+                <circle fill="black100" cx="0.608" cy="-2.162" r="0.9" />
+                <circle fill="black100" cx="0.608" cy="1.693" r="0.9" />
+                <circle fill="black100" cx="0.635" cy="-3.095" r="0.9" />
+                <circle fill="black100" cx="0.635" cy="1.004" r="0.9" />
+                <circle fill="black100" cx="0.635" cy="3.206" r="0.9" />
+                <circle fill="black100" cx="0.721" cy="0.590" r="0.9" />
+                <circle fill="black100" cx="0.748" cy="-0.509" r="0.9" />
+                <circle fill="black100" cx="0.775" cy="-1.418" r="0.9" />
+                <circle fill="black100" cx="0.775" cy="-1.776" r="0.9" />
+                <circle fill="black100" cx="0.775" cy="0.181" r="0.9" />
+                <circle fill="black100" cx="0.085" cy="-3.703" r="0.9" />
+                <circle fill="black100" cx="0.854" cy="1.392" r="0.9" />
+                <circle fill="black100" cx="0.854" cy="2.851" r="0.9" />
+                <circle fill="black100" cx="0.883" cy="-0.978" r="0.9" />
+                <circle fill="black100" cx="0.883" cy="2.382" r="0.9" />
+                <circle fill="black100" cx="0.942" cy="-0.234" r="0.9" />
+                <circle fill="black100" cx="0.942" cy="1.942" r="0.9" />
+                <circle fill="black100" cx="0.968" cy="-3.648" r="0.9" />
+                <circle fill="black100" cx="0.996" cy="-2.382" r="0.9" />
+                <circle fill="black100" cx="0.996" cy="-3.288" r="0.9" />
+                <circle fill="black100" cx="0.996" cy="3.482" r="0.9" />
+                <circle fill="black100" cx="1.022" cy="-2.819" r="0.9" />
+                <circle fill="black100" cx="1.104" cy="-1.996" r="0.9" />
+                <circle fill="black100" cx="0.113" cy="-0.950" r="0.9" />
+                <circle fill="black100" cx="0.113" cy="2.518" r="0.9" />
+                <circle fill="black100" cx="1.130" cy="3.842" r="0.9" />
+                <circle fill="black100" cx="1.157" cy="-0.649" r="0.9" />
+                <circle fill="black100" cx="1.157" cy="0.535" r="0.9" />
+                <circle fill="black100" cx="1.157" cy="3.180" r="0.9" />
+                <circle fill="black100" cx="1.188" cy="1.058" r="0.9" />
+                <circle fill="black100" cx="1.188" cy="1.554" r="0.9" />
+                <circle fill="black100" cx="1.216" cy="-1.608" r="0.9" />
+                <circle fill="black100" cx="1.216" cy="2.657" r="0.9" />
+                <circle fill="black100" cx="1.243" cy="2.189" r="0.9" />
+                <circle fill="black100" cx="1.297" cy="-1.112" r="0.9" />
+                <circle fill="black100" cx="1.297" cy="0.206" r="0.9" />
+                <circle fill="black100" cx="1.379" cy="-0.288" r="0.9" />
+                <circle fill="black100" cx="1.379" cy="-2.932" r="0.9" />
+                <circle fill="black100" cx="0.139" cy="-2.189" r="0.9" />
+                <circle fill="black100" cx="0.139" cy="-3.013" r="0.9" />
+                <circle fill="black100" cx="1.405" cy="-2.437" r="0.9" />
+                <circle fill="black100" cx="1.436" cy="-3.288" r="0.9" />
+                <circle fill="black100" cx="1.464" cy="1.829" r="0.9" />
+                <circle fill="black100" cx="1.492" cy="-2.050" r="0.9" />
+                <circle fill="black100" cx="1.518" cy="-3.757" r="0.9" />
+                <circle fill="black100" cx="1.518" cy="3.676" r="0.9" />
+                <circle fill="black100" cx="1.546" cy="1.333" r="0.9" />
+                <circle fill="black100" cx="1.546" cy="2.357" r="0.9" />
+                <circle fill="black100" cx="1.546" cy="3.314" r="0.9" />
+                <circle fill="black100" cx="1.572" cy="-0.785" r="0.9" />
+                <circle fill="black100" cx="1.572" cy="2.819" r="0.9" />
+                <circle fill="black100" cx="1.600" cy="0.869" r="0.9" />
+                <circle fill="black100" cx="1.654" cy="-1.582" r="0.9" />
+                <circle fill="black100" cx="0.166" cy="-2.599" r="0.9" />
+                <circle fill="black100" cx="0.166" cy="-3.342" r="0.9" />
+                <circle fill="black100" cx="0.166" cy="0.288" r="0.9" />
+                <circle fill="black100" cx="1.711" cy="0.428" r="0.9" />
+                <circle fill="black100" cx="1.739" cy="-0.013" r="0.9" />
+                <circle fill="black100" cx="1.794" cy="-2.437" r="0.9" />
+                <circle fill="black100" cx="1.794" cy="-2.905" r="0.9" />
+                <circle fill="black100" cx="1.819" cy="-3.288" r="0.9" />
+                <circle fill="black100" cx="1.819" cy="-0.370" r="0.9" />
+                <circle fill="black100" cx="1.847" cy="-1.225" r="0.9" />
+                <circle fill="black100" cx="1.874" cy="2.603" r="0.9" />
+                <circle fill="black100" cx="1.901" cy="-0.895" r="0.9" />
+                <circle fill="black100" cx="1.932" cy="1.776" r="0.9" />
+                <circle fill="black100" cx="1.932" cy="3.098" r="0.9" />
+                <circle fill="black100" cx="0.194" cy="-0.456" r="0.9" />
+                <circle fill="black100" cx="0.194" cy="1.613" r="0.9" />
+                <circle fill="black100" cx="0.194" cy="3.234" r="0.9" />
+                <circle fill="black100" cx="0.194" cy="3.784" r="0.9" />
+                <circle fill="black100" cx="1.960" cy="-1.914" r="0.9" />
+                <circle fill="black100" cx="1.960" cy="2.162" r="0.9" />
+                <circle fill="black100" cx="1.960" cy="3.620" r="0.9" />
+                <circle fill="black100" cx="1.987" cy="-3.563" r="0.9" />
+                <circle fill="black100" cx="1.987" cy="1.279" r="0.9" />
+                <circle fill="black100" cx="2.014" cy="0.785" r="0.9" />
+                <circle fill="black100" cx="2.095" cy="-3.895" r="0.9" />
+                <circle fill="black100" cx="2.122" cy="-1.526" r="0.9" />
+                <circle fill="black100" cx="2.207" cy="-0.148" r="0.9" />
+                <circle fill="black100" cx="2.207" cy="-2.243" r="0.9" />
+                <circle fill="black100" cx="2.207" cy="2.657" r="0.9" />
+                <circle fill="black100" cx="2.234" cy="-2.711" r="0.9" />
+                <circle fill="black100" cx="0.226" cy="2.081" r="0.9" />
+                <circle fill="black100" cx="2.261" cy="-3.262" r="0.9" />
+                <circle fill="black100" cx="2.261" cy="0.234" r="0.9" />
+                <circle fill="black100" cx="2.288" cy="-0.649" r="0.9" />
+                <circle fill="black100" cx="2.288" cy="-1.086" r="0.9" />
+                <circle fill="black100" cx="2.288" cy="1.613" r="0.9" />
+                <circle fill="black100" cx="2.369" cy="0.677" r="0.9" />
+                <circle fill="black100" cx="2.369" cy="1.086" r="0.9" />
+                <circle fill="black100" cx="2.369" cy="3.068" r="0.9" />
+                <circle fill="black100" cx="2.396" cy="2.324" r="0.9" />
+                <circle fill="black100" cx="2.423" cy="-1.855" r="0.9" />
+                <circle fill="black100" cx="2.423" cy="-3.648" r="0.9" />
+                <circle fill="black100" cx="2.455" cy="3.455" r="0.9" />
+                <circle fill="black100" cx="2.483" cy="1.942" r="0.9" />
+                <circle fill="black100" cx="0.253" cy="-1.801" r="0.9" />
+                <circle fill="black100" cx="0.253" cy="0.677" r="0.9" />
+                <circle fill="black100" cx="2.617" cy="-1.392" r="0.9" />
+                <circle fill="black100" cx="2.617" cy="-0.314" r="0.9" />
+                <circle fill="black100" cx="2.617" cy="-3.154" r="0.9" />
+                <circle fill="black100" cx="2.617" cy="3.842" r="0.9" />
+                <circle fill="black100" cx="2.644" cy="-2.518" r="0.9" />
+                <circle fill="black100" cx="2.644" cy="0.154" r="0.9" />
+                <circle fill="black100" cx="2.644" cy="2.684" r="0.9" />
+                <circle fill="black100" cx="2.676" cy="1.333" r="0.9" />
+                <circle fill="black100" cx="2.693" cy="-3.838" r="0.9" />
+                <circle fill="black100" cx="2.702" cy="-0.978" r="0.9" />
+                <circle fill="black100" cx="2.729" cy="-1.801" r="0.9" />
+                <circle fill="black100" cx="0.280" cy="1.171" r="0.9" />
+                <circle fill="black100" cx="2.810" cy="0.590" r="0.9" />
+                <circle fill="black100" cx="2.837" cy="-3.536" r="0.9" />
+                <circle fill="black100" cx="2.837" cy="1.747" r="0.9" />
+                <circle fill="black100" cx="2.866" cy="2.932" r="0.9" />
+                <circle fill="black100" cx="2.923" cy="-2.216" r="0.9" />
+                <circle fill="black100" cx="2.923" cy="3.373" r="0.9" />
+                <circle fill="black100" cx="2.951" cy="-2.766" r="0.9" />
+                <circle fill="black100" cx="2.951" cy="1.032" r="0.9" />
+                <circle fill="black100" cx="2.951" cy="2.270" r="0.9" />
+                <circle fill="black100" cx="2.978" cy="-0.617" r="0.9" />
+                <circle fill="black100" cx="3.031" cy="-3.179" r="0.9" />
+                <circle fill="black100" cx="3.086" cy="-1.145" r="0.9" />
+                <circle fill="black100" cx="3.113" cy="-1.526" r="0.9" />
+                <circle fill="black100" cx="3.113" cy="-1.855" r="0.9" />
+                <circle fill="black100" cx="3.113" cy="0.126" r="0.9" />
+                <circle fill="black100" cx="3.113" cy="3.676" r="0.9" />
+                <circle fill="black100" cx="3.139" cy="-0.234" r="0.9" />
+                <circle fill="black100" cx="3.139" cy="2.545" r="0.9" />
+                <circle fill="black100" cx="3.198" cy="-3.730" r="0.9" />
+                <circle fill="black100" cx="3.224" cy="1.747" r="0.9" />
+                <circle fill="black100" cx="3.252" cy="-2.545" r="0.9" />
+                <circle fill="black100" cx="3.252" cy="0.730" r="0.9" />
+                <circle fill="black100" cx="3.280" cy="1.366" r="0.9" />
+                <circle fill="black100" cx="3.332" cy="-2.104" r="0.9" />
+                <circle fill="black100" cx="3.332" cy="-2.959" r="0.9" />
+                <circle fill="black100" cx="3.360" cy="-0.649" r="0.9" />
+                <circle fill="black100" cx="3.360" cy="2.135" r="0.9" />
+                <circle fill="black100" cx="3.388" cy="2.932" r="0.9" />
+                <circle fill="black100" cx="3.388" cy="3.373" r="0.9" />
+                <circle fill="black100" cx="3.419" cy="-3.508" r="0.9" />
+                <circle fill="black100" cx="3.499" cy="3.923" r="0.9" />
+                <circle fill="black100" cx="3.527" cy="-1.058" r="0.9" />
+                <circle fill="black100" cx="3.527" cy="0.374" r="0.9" />
+                <circle fill="black100" cx="3.554" cy="-0.041" r="0.9" />
+                <circle fill="black100" cx="3.581" cy="-1.418" r="0.9" />
+                <circle fill="black100" cx="3.581" cy="-1.801" r="0.9" />
+                <circle fill="black100" cx="0.360" cy="2.905" r="0.9" />
+                <circle fill="black100" cx="3.635" cy="1.117" r="0.9" />
+                <circle fill="black100" cx="3.667" cy="2.437" r="0.9" />
+                <circle fill="black100" cx="3.692" cy="1.860" r="0.9" />
+                <circle fill="black100" cx="3.720" cy="-2.465" r="0.9" />
+                <circle fill="black100" cx="3.720" cy="-3.179" r="0.9" />
+                <circle fill="black100" cx="3.748" cy="1.500" r="0.9" />
+                <circle fill="black100" cx="3.748" cy="3.536" r="0.9" />
+                <circle fill="black100" cx="3.775" cy="-0.401" r="0.9" />
+                <circle fill="black100" cx="3.828" cy="-3.703" r="0.9" />
+                <circle fill="black100" cx="3.828" cy="0.677" r="0.9" />
+                <circle fill="black100" cx="3.856" cy="2.851" r="0.9" />
+                <circle fill="black100" cx="0.386" cy="-1.306" r="0.9" />
+                <circle fill="black100" cx="3.883" cy="-0.865" r="0.9" />
+                <circle fill="black100" cx="3.914" cy="-2.077" r="0.9" />
+                <circle fill="black100" cx="3.914" cy="0.234" r="0.9" />
+            </pattern>
+        </symbol>
+    </Symbols>
+    
+</IOFMapSymbols>

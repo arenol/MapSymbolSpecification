@@ -1,0 +1,130 @@
+<!ELEMENT MapSymbolsSpec (BaseColors, ColorLayers, Symbols)>
+
+<!ATTLIST MapSymbolsSpec id CDATA #REQUIRED>
+<!ATTLIST MapSymbolsSpec version CDATA #IMPLIED>
+<!ATTLIST MapSymbolsSpec issued-date CDATA #IMPLIED>  <!-- YYYY-MM-DD -->
+<!ATTLIST MapSymbolsSpec valid-date CDATA #IMPLIED>   <!-- YYYY-MM-DD -->
+<!ATTLIST MapSymbolsSpec language CDATA "en">
+<!ATTLIST MapSymbolsSpec target-scale CDATA #IMPLIED>
+
+<!-- version, issued-date, and valid-date shall be provided by files issued by the IOF for official standards -->
+
+<!ELEMENT BaseColors (color*)>
+
+<!ELEMENT color (calibration*) >
+<!ATTLIST color id ID #REQUIRED>      <!-- by convention this should be an upper case name -->
+<!ATTLIST color cmyk CDATA #REQUIRED>   <!-- nominal CMYK-values, comma separated -->
+
+<!ELEMENT calibration EMPTY>
+<!ATTLIST calibration standard (PMS|ICC|ISO|RAL|NCS) #REQUIRED>
+<!ATTLIST calibration value CDATA #REQUIRED>
+
+<!ELEMENT ColorLayers (layer*)>
+
+<!ELEMENT layer EMPTY>
+<!ATTLIST id ID #REQUIRED>              <!-- use a shorthand name for this, e.g. "black100" -->
+<!ATTLIST name CDATA #REQUIRED>
+<!ATTLIST color IDREF #REQUIRED>        <!-- reference to base color name -->
+<!ATTLIST tint CDATA "1.0">
+<!ATTLIST overprint (no|yes) "no">
+<!ATTLIST opacity CDATA "1.0">
+<!ATTLIST blend (normal|color|color-burn|color-dodge|darken|difference|exclusion|
+                 hard-light|hue|lighten|luminosity|multiply|overlay|saturation|
+				 screen|soft-light) "normal">
+
+<!ELEMENT Symbols (symbol*)>
+
+<!ELEMENT symbol description? (path|circle|rect|text|stroke-decoration|pattern|hatch-pattern)*>
+<!ATTLIST symbol type (point|line|area|text) #REQUIRED>
+<!ATTLIST symbol id ID #REQUIRED>                   <!-- the symbol code -->
+<!ATTLIST symbol name CDATA #REQUIRED>
+<!ATTLIST symbol min-length CDATA #IMPLIED>        <!-- only used on line symbols -->
+<!ATTLIST symbol min-area CDATA #IMPLIED>          <!-- only used on area symbols -->
+<!ATTLIST symbol min-width CDATA #IMPLIED>         <!-- only used on area symbols -->
+<!ATTLIST symbol rotatable (yes|no) "no">          <!-- only used on point symbols and area sybols with pattern -->
+<!ATTLIST symbol outline IDREF #IMPLIED>
+
+<!ENTITY % stroke-style 
+    'stroke-width   CDATA   #IMPLIED
+     stroke-linecap CDATA   "butt"
+     stroke-linejoin CDATA  "miter"
+     stroke-miterlimit CDATA "4"
+     stroke-dasharray CDATA ""
+     stroke-dahsoffset CDATA "0"
+     stroke-offset CDATA "0"'>
+
+<!ENTITY % text-style
+    'font-familiy   CDATA "sans-serif"
+     font-size      CDATA #IMPLIED
+     font-weight    (normal|bold) "normal"
+     font-style     (normal|italic) "normal"
+     font-decoration (none|underline) "none" '>
+     
+
+<!-- 
+    the *outline* attribute is used only on area symbols to associate the
+    symbol to a corresponding outline symbol. It does not mean that the symbol
+    is to be displayed with an outline.
+-->
+
+<!ELEMENT path EMPTY>
+<!ATTLIST path fill IDREF #IMPLIED>                <!-- not legal in line symbols -->
+<!ATTLIST path stroke IDREF #IMPLIED>
+<!ATTLIST path %stroke-style;>
+<!ATTLIST path d CDATA #IMPLIED>
+
+<!--
+    The fill and stroke attributes are refences to a colour layer
+    The style attribute is only used on line symbols 
+    
+    Unless used in a symbol or a pattern definition, the d-attribute
+    shall not be specified
+-->
+
+<!ELEMENT circle EMPTY>
+<!ATTLIST circle fill IDREF #IMPLIED>
+<!ATTLIST circle stroke IDREF #IMPLIED>
+<!ATTLIST circle %stroke-style;>
+<!ATTLIST circle cx CDATA #REQUIRED>
+<!ATTLIST circle cy CDATA #REQUIRED>
+<!ATTLIST circle r CDATA #REQUIRED>       <!-- radius -->
+
+<!ELEMENT rect EMPTY>
+<!ATTLIST rect fill IDREF #IMPLIED>
+<!ATTLIST rect stroke IDREF #IMPLIED>
+<!ATTLIST rect %stroke-style;>
+<!ATTLIST rect x CDATA #REQUIRED>          <!-- lower left corner -->
+<!ATTLIST rect y CDATA #REQUIRED>          <!-- lower left corner -->
+<!ATTLIST rect width CDATA #REQUIRED>
+<!ATTLIST rect height CDATA #REQUIRED>
+
+<!ELEMEMT stroke-decoration (path|circle|rect)*>
+<!ATTLIST stroke-decoration type (regular|dash-point|start-point|end-point)>
+<!ATTLIST stroke-decoration spacing CDATA #IMPLIED>        <!-- spacing and offset required for "regular" type -->
+<!ATTLIST stroke-decoration offset CDATA #IMPLIED>         <!-- shall not be specified for the other types -->
+
+<!ELEMENT pattern (path|circle|rect)*>
+<!ATTLIST pattern x CDATA #REQUIRED>                        <!-- lower left corner of pattern tile -->
+<!ATTLIST pattern y CDATA #REQUIRED>                        <!-- lower left corner of pattern tile -->
+<!ATTLIST pattern width CDATA #REQUIRED>
+<!ATTLIST pattern height CDATA #REQUIRED>
+<!ATTLIST pattern tiling (regular|brick) "regular">
+
+<!ELEMENT hatch-pattern EMPTY>
+<!ATTLIST hatch-pattern stroke IDREF #REQUIRED>
+<!ATTLIST hatch-pattern style CDATA #REQUIRED>
+<!ATTLIST hatch-pattern spacing CDATA #REQUIRED>
+<!ATTLIST hatch-pattern rotation CDATA "0">                 <!-- degrees: 0 = horizontal, positive = CCW -->
+
+<!ELEMENT text EMPTY>
+<!ATTLIST text fill IDREF #IMPLIED>
+<!ATTLIST text stroke IDREF #IMPLIED>
+<!ATTLIST text %text-style;>
+
+<!ELEMENT description (#PCDATA p b i a)*>
+<!ELEMENT a (#PCDATA | b | i)*>
+<!ATTLIST a href CDATA #REQUIRED>
+
+<!ELEMENT b (#PCDATA | a | b | i)*>
+<!ELEMENT i (#PCDATA | a | b | i)*>
+
