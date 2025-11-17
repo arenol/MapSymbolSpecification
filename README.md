@@ -1,5 +1,5 @@
 # Map Symbol Specification file (MSS)
-Version 1.0, January 2026.
+Draft.
 
 ## About MSS
 This document specifies the features and syntax of the Map Symbol Specification file, MSS. MSS files are intended to define the symbols and colors used in an orienteering map in a machine-readable form. MSS is based on XML and to describe graphocal content, it borrows some elements/concepts from the Scalable Vector Graphics format (SVG).
