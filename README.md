@@ -84,7 +84,7 @@ The ***ColorLayer*** section establishes the painting order of the symbols on th
 * **tint:** This specifies the percentage of the base color to use on this layer, for example **tint**="0.3" means 30%. This is optional and defaults to 1.0 if omitted.
 * **overprint**: This specifies whether the color should be overprinted ("yes") or not ("no"). Defaults to "no" 
 * **opacity:** This specifies the opacity of the layer. This attribute is currently not used by any of the IOF standards, but is provided for possible future use, or for use with non-IOF symbol sets. Values shall range from 0.0 which is fully transparent to 1.0 which is completely opaque.
-* **blend:** May take any blend mode defined by the SVG format. Though IOF may only use "multiply" or "darken".
+* **blend:** May take any blend mode defined by the SVG format. Though IOF may only use "multiply" or "darken" apart from the default "normal".
 
 
 ## The Symbols Section
@@ -153,7 +153,7 @@ When point symbols are to be placed along the line, such as fence tags or power-
       <path stroke="upper black" stroke-width="0.14" line-join="round" line-cap="but" />
       <stroke-decoration type="regular" spacing="2.0" offset="0.8">
         <circle cx="0", cy="0" r="0.2" fill="upper black" />
-      </dash-symbol>
+      </stroke-decoration>
     </symbol>
     
 For the symbol coordinates, positive x-values are along the line in the drawing direction, and positive y-values are perpendicularly to the left of the drawing direction. 
