@@ -17,6 +17,7 @@
 
 
 from reportlab.lib.units import mm
+import math
 
 
 class MSSLegendDrawer(object):
@@ -26,7 +27,7 @@ class MSSLegendDrawer(object):
     '''
     
     # height and width of graphical legend elements
-    legend_width = 12   # mm
+    legend_width = 14   # mm
     legend_height = 5   # mm
     
     # the vertical spacing between each line
@@ -175,8 +176,8 @@ class MSSLegendDrawer(object):
             if (part.tag == 'path'):
                 stroke = part.attrib['stroke']
                 if (stroke == layerId):
-                    self.SetStrokeStyle( part, layer)
-                    self.DrawLegendLine( xs, ys)
+                    lineLen = self.SetStrokeStyle( part, layer)
+                    self.DrawLegendLine( xs, ys, lineLen)
             # TODO: Add stroke decaration
                     
     def GetLayerColor( self, layer):
@@ -238,9 +239,12 @@ class MSSLegendDrawer(object):
 
         Returns
         -------
-        None.
+        The length of the line to be drawn in the legend such that complete
+        dashes are shown at the end..
 
         '''
+        lineLen = self.legend_width
+        
         c, m, y, k, opacity, blend = self.GetLayerColor( layer)
         self.canvas.setStrokeColorCMYK( c, m, y, k)
         
@@ -251,12 +255,20 @@ class MSSLegendDrawer(object):
         sDashOffset = 0
         if ('stroke-dasharray' in path.attrib):
             sDash = [float(x) for x in path.attrib['stroke-dasharray'].split(',')]
+        if ('stroke-dashoffset' in path.attrib):
+            sDashOffset = float( path.attrib['stroke-dashoffset'])
+
+        lineLen = self.CalcLineLengthFromDash( sDash, sDashOffset, lineLen)
+
+    
         self.canvas.setDash( sDash, sDashOffset)
         # the dashes and and offset must be adjusted for each path, so the path will always
         # end in a complete dashed (with a possible offset). Not sure how to communicate this
         # to the drawing function, as I cannot find a getCurrentDash method in the canvas class
         
         # TODO: add stroke-linecap, stroke-linejoion
+        
+        return lineLen
 
     def SetFillStyle( self, layer):
         '''
@@ -299,7 +311,7 @@ class MSSLegendDrawer(object):
         self.canvas.rect( x-width*0.5, y-height*0.5, width, height, fill=1, stroke=0)
     
         
-    def DrawLegendLine( self, x, y):
+    def DrawLegendLine( self, x, y, lineLen):
         '''
         Draws a line using the current line style centered at x, y
 
@@ -313,14 +325,13 @@ class MSSLegendDrawer(object):
 
         '''
         
-        width = self.legend_width
         p = self.canvas.beginPath()
-        p.moveTo( x - width*0.5, y)
-        p.lineTo( x + width*0.5, y)
+        p.moveTo( x - lineLen*0.5, y)
+        p.lineTo( x + lineLen*0.5, y)
         self.canvas.drawPath( p)
         
         # TODO: This is just a straght line. Draw a more complex line to better
-        # test stroke decotrations.
+        # test stroke decorations.
         
         
     def DrawCircle( self, xs, ys, circle):
@@ -367,7 +378,7 @@ class MSSLegendDrawer(object):
         None.
 
         '''
-        y = starty - 1.5
+        y = starty - 1.0
         
         self.canvas.setFont( "Helvetica", 3)
         
@@ -376,6 +387,32 @@ class MSSLegendDrawer(object):
             print(  symbolName)
             self.canvas.drawString( x, y, symbolName)
             y -= dy
+            
+    def CalcLineLengthFromDash( self, dashArray, dashOffset, maxLen):
+        '''
+        Calulate the longest line length that will fit a complete number of
+        dashes, <dashOffset> taken into account on a line shorter than <maxLen>
+
+        Parameters
+        ----------
+        dashArray : [float]
+        dashOffset : float
+        maxLen : float
+
+        Returns
+        -------
+        float
+
+        '''
+        
+        dashLen = sum( dashArray)
+        offset2x = 2*dashOffset
+        if (dashLen == 0):
+            return maxLen
+        dashCount = math.floor((maxLen + dashArray[-1] + offset2x)/dashLen)
+        return (dashLen * dashCount - dashArray[-1]) - offset2x
+        
+                               
             
     def AdjustDashArray( dashArray, dashOffset, lineLength):
         '''
@@ -401,8 +438,8 @@ class MSSLegendDrawer(object):
 
         '''
         
-        # TODO: This function is not tested, it was just drawn out of my head, so I'm
-        # not sure it's working to the plan. It will problaly not work correctly.
+        # TODO: This function is not tested, it was just drawn out of my head, so 
+        # it's probably not working as intended.
             
         
         if (len(dashArray) == 0):
