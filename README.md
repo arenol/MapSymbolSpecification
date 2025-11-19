@@ -2,7 +2,7 @@
 Draft.
 
 ## About MSS
-This document specifies the features and syntax of the Map Symbol Specification file, MSS. MSS files are intended to define the symbols and colors used in an orienteering map in a machine-readable form. MSS is based on XML and to describe graphocal content, it borrows some elements/concepts from the Scalable Vector Graphics format (SVG).
+This document specifies the features and syntax of the Map Symbol Specification file, MSS. MSS files are intended to define the symbols and colors used in an orienteering map in a machine-readable form. MSS is based on XML and to describe graphical content, it borrows some elements/concepts from the Scalable Vector Graphics format (SVG).
 
 MSS is designed to be a simple and general but expressive enough to allow complex symbol styles to be defined.
 
@@ -52,7 +52,7 @@ The symbol ***description*** is the text describing a map symbol. It supports a 
 Since this is an optional element, it is omitted in subsequent examples. But will be provided for all official specifications issued by the IOF.
 
 ## Coordinates and Units of Measure
-All coordinate and distance units are given in millimeters. Areas are given in square millimeters. Both of these refer to paper coordinates, i.e. accordint to the **target-scale**.
+All coordinate and distance units are given in millimeters. Areas are given in square millimeters. Both of these refer to paper coordinates, i.e. according to the **target-scale**.
 
 Percentages are given as real numbers, thus 40% is given as "0.4"
 
@@ -165,7 +165,7 @@ The *type* attribute may take one of the following values:
 * "end-point:" symbol at the end of the line.
 * "dash-point:" symbols placed at dash-points of the line.
 
-For start-point and end-point symbol, an **offset** may be sepcified to indicate that the symbol is to be displayed som distance from the end.
+For start-point and end-point symbol, an **offset** may be specified to indicate that the symbol is to be displayed some distance from the end. Positive values is one the line, whereas negative values are outside the line ends.
 
 ### Offset Lines
 Lines that are to be offset from the center line, such as the road outline or the lines of a major power-line, is specified using the **stroke-offset** attribute.
@@ -216,7 +216,7 @@ The **clip** attribute may have the following values:
 
 * "yes": the symbols will be clipped at the boundary. This is the default
 * "inside": pattern objects will be displayed only if they are completely inside the boundary of the area
-* "center": pattern objects will be displayed only if their center point is inside the boundary of the area
+* "center": pattern objects will be displayed only if their center point (local origin) is inside the boundary of the area
     
 Interleaving pattern symbols, like the indistinct marsh pattern, can be specified by setting the **tiling** attribute to "brick":
 
