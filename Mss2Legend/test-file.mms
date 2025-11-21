@@ -23,6 +23,9 @@
         <symbol type="line" id="505" name="Footpath">
             <path stroke="black100" stroke-width="0.25" stroke-dasharray="2.0, 0.25" />
         </symbol>
+        <symbol type="point" id="523" name="Ruin">
+            <rect stroke="black100" stroke-width="0.16" x="-0.32" y="-0.32" width="0.64" height="0.64" />
+        </symbol>
             
     </Symbols>
 </MapSymbolsSpec>

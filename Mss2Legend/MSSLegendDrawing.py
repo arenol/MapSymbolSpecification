@@ -117,11 +117,24 @@ class MSSLegendDrawer(object):
         '''
         layerId = layer.attrib['id']
         for part in symbol:
-            if (part.tag == 'circle'):
-                fill = part.attrib['fill']
-                if (fill == layerId):
-                    self.SetFillStyle( layer)
+            
+            fill = part.attrib.get('fill')
+            stroke = part.attrib.get('stroke')
+            
+            doThisLayer = False
+            if (fill == layerId):
+                self.SetFillStyle( layer)
+                doThisLayer = True
+                
+            if (stroke == layerId):
+                self.SetStrokeStyle(part, layer)
+                doThisLayer = True
+                
+            if doThisLayer:
+                if (part.tag == 'circle'):
                     self.DrawCircle( xs, ys, part)
+                elif (part.tag == 'rect'):
+                    self.DrawRect( xs, ys, part)
             # TODO: add path and rect elements
                         
     def DrawAreaSymbol( self, xs, ys, layer, symbol):
@@ -359,6 +372,31 @@ class MSSLegendDrawer(object):
         stroke = 1 if "stroke" in circle.attrib else 0
         
         self.canvas.circle( cx, cy, r, fill=fill, stroke=stroke)
+        
+    def DrawRect( self, xs, ys, rect):
+        '''
+        Draws a rectangle at xs, ys
+
+        Parameters
+        ----------
+        xs, ys : float
+            Center point for the symbol
+        rect : xml(svg) rect element
+            holds position and style of rect
+
+        Returns
+        -------
+        None.
+
+        '''
+        llx = xs + float(rect.attrib['x'])
+        lly = ys + float(rect.attrib['y'])
+        w = float( rect.attrib['width'])
+        h = float( rect.attrib['height'])
+        fill = 1 if "fill" in rect.attrib else 0
+        stroke = 1 if "stroke" in rect.attrib else 0
+        
+        self.canvas.rect( llx, lly, w, h, fill=fill, stroke=stroke)
         
     def DrawNames( self, x, starty, dy):
         '''
