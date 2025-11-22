@@ -26,6 +26,11 @@
         <symbol type="point" id="523" name="Ruin">
             <rect stroke="black100" stroke-width="0.16" x="-0.32" y="-0.32" width="0.64" height="0.64" />
         </symbol>
+        <symbol type="point" id="524" name="High tower">
+            <circle fill="black100" cx="0" cy="0" r="0.4" />
+            <path stroke="black100" stroke-width="0.16" d="M 0 0.7 L 0 -0.7" />
+            <path stroke="black100" stroke-width="0.16" d="M 0.7 0 L -0.7 0" />
+        </symbol>
             
     </Symbols>
 </MapSymbolsSpec>

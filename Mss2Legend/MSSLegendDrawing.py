@@ -18,6 +18,8 @@
 
 from reportlab.lib.units import mm
 import math
+from MSSPath import ParseSvgPath
+
 
 
 class MSSLegendDrawer(object):
@@ -135,7 +137,8 @@ class MSSLegendDrawer(object):
                     self.DrawCircle( xs, ys, part)
                 elif (part.tag == 'rect'):
                     self.DrawRect( xs, ys, part)
-            # TODO: add path and rect elements
+                elif (part.tag == 'path'):
+                    self.DrawPath(xs, ys, part)
                         
     def DrawAreaSymbol( self, xs, ys, layer, symbol):
         '''
@@ -347,6 +350,34 @@ class MSSLegendDrawer(object):
         # test stroke decorations.
         
         
+    def DrawPath( self, xs, ys, path):
+        '''
+        Draw a path centered on xs, ys
+
+        Parameters
+        ----------
+        xs, ys : float
+            Centerpoint where to draw the path.
+        path : xml/svg path element
+
+        Returns
+        -------
+        None.
+
+        '''
+        self.canvas.saveState()
+        self.canvas.translate( xs, ys)
+        
+        p = ParseSvgPath( self.canvas, path.attrib['d'])
+
+        fill = 1 if "fill" in path.attrib else 0
+        stroke = 1 if "stroke" in path.attrib else 0
+
+        self.canvas.drawPath( p, fill = fill, stroke=stroke)
+        self.canvas.restoreState()
+        
+        
+    
     def DrawCircle( self, xs, ys, circle):
         '''
         Draws a circle centered at xs, ys.
