@@ -6,6 +6,7 @@
         <color id="CYAN" cmyk="1,0,0,0" />
         <color id="PURPLE" cmyk="0.3,1,0,0" />
         <color id="YELLOW" cmyk="0,0.25,1,0" />
+        <color id="GREEN" cmyk="0.8,0,1,0" />
     </BaseColors>
     <ColorLayers>
         <layer id="uprPurple" color="PURPLE"/>
@@ -13,6 +14,8 @@
         <layer id="brown100" color="BROWN"/>
         <layer id="black35" color="BLACK" tint="0.35" />
         <layer id="blueOP" color="CYAN" overprint="yes"/>
+        <layer id="green60" color="GREEN" tint="0.6" />
+        <layer id="yellow0" color="YELLOW" tint="0.0" />
         <layer id="yellow50" color="YELLOW" tint="0.5" />
     </ColorLayers>
     <Symbols>
@@ -35,6 +38,16 @@
         <symbol type="area" id="310" name="Indistinct marsh">
             <hatch stroke="blueOP" stroke-width="0.1" spacing="0.6" stroke-dasharray="0.9,0.25"/>
             <hatch stroke="blueOP" stroke-width="0.1" offset="0.3" spacing="0.6" stroke-dasharray="0.9,0.25" stroke-dashoffset="0.575"/>
+        </symbol>
+        <symbol type="area" id="404.0" name="Rough open with scattered trees">
+            <hatch stroke="yellow0" stroke-width="0.5" stroke-linecap="round" stroke-dasharray="0,0.8" spacing="0.8" rotation="45"/>
+            <path fill="yellow50" />
+        </symbol>
+        <symbol type="area" id="404.1" name="Rough open with scattered bushes">
+            <pattern x="0" y="0" width="0.8" height="0.8" clipping="yes" tiling="regular" rotation="45">
+                <circle cx="0.4" cy="0.4" r="0.25" fill="green60" />
+            </pattern>
+            <path fill="yellow50" />
         </symbol>
         <symbol type="line" id="505" name="Footpath">
             <path stroke="black100" stroke-width="0.25" stroke-dasharray="2.0, 0.25" />

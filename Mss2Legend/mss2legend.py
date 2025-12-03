@@ -6,6 +6,7 @@ from reportlab.lib.units import mm
 from MSSLegendDrawing import *
 
 
+
 def BailOut( errorMessage, params=None):
     '''
     Prints an error message and exits the program.
@@ -22,7 +23,7 @@ def BailOut( errorMessage, params=None):
 
 
 def main():
-    xmlFileName = "test-file.mms"
+    xmlFileName = "test-file.xml"
     
     xmlDom = ET.parse( xmlFileName)
     

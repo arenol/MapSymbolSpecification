@@ -6,6 +6,7 @@ Created on Sat Nov 22 07:57:07 2025
 """
 
 import re
+import math
 
 def ParseSvgPath(canvas,d):
     '''
@@ -108,6 +109,124 @@ def ParseSvgPath(canvas,d):
             # SVG closes back to subpath start; we could track it if needed
     return thePath
 
+def AdjustDashArray( dashArray, dashOffset, lineLength):
+    '''
+    Given a the length of a line, this will return adjusted dashArray and dashOffset
+    so the line will be drawn with full (or offseted) dash at the start, and a full (or offseted)
+    dash at the end
 
+    Parameters
+    ----------
+    dashArray : [float]
+        array of floats
+    dashOffset : float
+        dash offset at the ends
+    lineLength : float
+        the length of the line
 
+    Returns
+    -------
+    [float]
+        Adjusted dasharray
+    float
+        Adjusted offset
+
+    '''
     
+    # TODO: This function is not tested, it was just drawn out of my head, so 
+    # it's probably not working as intended.
+        
+    
+    if (len(dashArray) == 0):
+        return dashArray, dashOffset
+    lastGap = dashArray[-1]
+    dashLength = sum( dashArray)
+    count = int((lineLength+lastGap)/dashLength)
+    nominalLength = dashLength / (count * dashLength)
+    scaling = nominalLength / lineLength
+    
+    outArray = [x*scaling for x in dashArray]
+    outOffset = dashOffset * scaling
+    
+    return outArray, outOffset
+
+def CalcLineLengthFromDash( dashArray, dashOffset, maxLen):
+    '''
+    Calulate the longest line length that will fit a complete number of
+    dashes, <dashOffset> taken into account on a line shorter than <maxLen>
+
+    Parameters
+    ----------
+    dashArray : [float]
+    dashOffset : float
+    maxLen : float
+
+    Returns
+    -------
+    float
+
+    '''
+    
+    dashLen = sum( dashArray)
+    offset2x = 2*dashOffset
+    if (dashLen == 0):
+        return maxLen
+    dashCount = math.floor((maxLen + dashArray[-1] + offset2x)/dashLen)
+    return (dashLen * dashCount - dashArray[-1]) - offset2x
+
+def CreatePolyFromRect( xc, yc, w, h):
+
+    llx = xc - w/2
+    lly = yc - h/2
+    urx = llx + w
+    ury = lly + h
+
+    return CreatePolyFromBounds( llx, lly, urx, ury)
+
+def CreatePolyFromBounds( llx, lly, urx, ury):
+
+    return [(llx, lly),(urx, lly),(urx,ury),(llx,ury)]
+
+
+def RotatePoly( poly, angle):
+    angle *= math.pi / 180
+
+    result = []
+    for (x,y) in poly:
+        x0 = x * math.cos(angle) - y * math.sin(angle)
+        y0 = x * math.sin(angle) + y * math.cos(angle)
+
+        result.append( (x0, y0))
+
+    return result
+
+def CalcPolyBounds( poly):
+    (x,y) = poly[0]
+    xMin = x
+    xMax = x
+    yMin = y
+    yMax = y
+
+    for (x,y) in poly:
+        xMin = min( x, xMin)
+        xMax = max( x, xMax)
+        yMin = min( y, yMin)
+        yMax = max( y, yMax)
+
+    return (xMin, yMin, xMax, yMax)
+
+def CreatePathFromPoly( canvas, poly, closePath):
+
+    p = canvas.beginPath()
+
+    firstPoint = True
+    for (x,y) in poly:
+        if firstPoint:
+            p.moveTo( x, y)
+            firstPoint = False
+        else:
+            p.lineTo( x, y)
+    if (closePath):
+        p.close()
+    return p
+

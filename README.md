@@ -196,9 +196,20 @@ Basic hatch patterns can be defined like this:
       <hatch stroke="uprPurple" stroke-width="0.2" spacing="1.2" rotation="-45" />
     </symbol>
     
+    
 The **rotatable** attribute defaults to "no" and can be omitted. Symbols rotatable at object level must have the value "yes"
 
 The default **rotation** value is "0" and yields a horizontal line with positive values representing counter-clockwise rotation.  
+
+You can also introduce a vertical offset, so you can create indistinct marsh symbol:
+
+    <symbol type="area" id="310" name="Indistinct marsh">
+        <hatch stroke="blue100" stroke-width="0.1" spacing="0.6" stroke-dasharray="0.9,0.25"/>
+        <hatch stroke="blue100" stroke-width="0.1" offset="0.3" spacing="0.6" stroke-dasharray="0.9,0.25" stroke-dashoffset="0.575"/>
+    </symbol>
+
+
+
 
 ### Repeating Patterns
 Repeating patterns can be defined like this:
