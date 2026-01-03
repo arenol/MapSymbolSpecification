@@ -8,6 +8,16 @@ Created on Sat Nov 22 07:57:07 2025
 import re
 import math
 
+def ParseStrokeDash( xmlPath):
+    sDash = []
+    sDashOffset = 0
+    if ('stroke-dasharray' in xmlPath.attrib):
+        sDash = [float(x) for x in xmlPath.attrib['stroke-dasharray'].split(',')]
+    if ('stroke-dashoffset' in xmlPath.attrib):
+        sDashOffset = float( xmlPath.attrib['stroke-dashoffset'])
+    return sDash, sDashOffset
+
+
 def ParseSvgPath(canvas,d):
     '''
     Creates a reportlab path object from an SVG path element
@@ -115,21 +125,8 @@ def AdjustDashArray( dashArray, dashOffset, lineLength):
     so the line will be drawn with full (or offseted) dash at the start, and a full (or offseted)
     dash at the end
 
-    Parameters
-    ----------
-    dashArray : [float]
-        array of floats
-    dashOffset : float
-        dash offset at the ends
-    lineLength : float
-        the length of the line
-
-    Returns
-    -------
-    [float]
-        Adjusted dasharray
-    float
-        Adjusted offset
+    This function is not used, instead, the length of the line is adjusted to match the
+    dasha pattern; se the function below.
 
     '''
     
@@ -150,22 +147,16 @@ def AdjustDashArray( dashArray, dashOffset, lineLength):
     
     return outArray, outOffset
 
-def CalcLineLengthFromDash( dashArray, dashOffset, maxLen):
+def CalcLineLengthFromDash( xmlPath, maxLen):
     '''
     Calulate the longest line length that will fit a complete number of
     dashes, <dashOffset> taken into account on a line shorter than <maxLen>
 
-    Parameters
-    ----------
-    dashArray : [float]
-    dashOffset : float
-    maxLen : float
-
-    Returns
-    -------
-    float
-
     '''
+    if ('stroke-dasharray' in xmlPath.attrib):
+        dashArray, dashOffset = ParseStrokeDash( xmlPath)
+    else:
+        return maxLen
     
     dashLen = sum( dashArray)
     offset2x = 2*dashOffset
@@ -175,6 +166,9 @@ def CalcLineLengthFromDash( dashArray, dashOffset, maxLen):
     return (dashLen * dashCount - dashArray[-1]) - offset2x
 
 def CreatePolyFromRect( xc, yc, w, h):
+    '''
+    Returns an array on the form [(x,y),(x,y),...]
+    '''
 
     llx = xc - w/2
     lly = yc - h/2
@@ -184,11 +178,19 @@ def CreatePolyFromRect( xc, yc, w, h):
     return CreatePolyFromBounds( llx, lly, urx, ury)
 
 def CreatePolyFromBounds( llx, lly, urx, ury):
+    '''
+    Returns an array on the form [(x,y),(x,y),...]
+    '''
 
     return [(llx, lly),(urx, lly),(urx,ury),(llx,ury)]
 
 
 def RotatePoly( poly, angle):
+    '''
+    Takes a <poly> on the form [(x,y),(x,y),...]
+    and returns a polygon rotated <angle> degrees around the origin.
+    '''
+
     angle *= math.pi / 180
 
     result = []
@@ -201,6 +203,11 @@ def RotatePoly( poly, angle):
     return result
 
 def CalcPolyBounds( poly):
+    '''
+    Returns a tuple on the form (xmin, ymin, xmax, ymax) holding the 
+    outer bounds of the provided polygon
+    '''
+    
     (x,y) = poly[0]
     xMin = x
     xMax = x
@@ -216,6 +223,9 @@ def CalcPolyBounds( poly):
     return (xMin, yMin, xMax, yMax)
 
 def CreatePathFromPoly( canvas, poly, closePath):
+    '''
+    Given a polygon, creatas and returns a canvas path from it.    
+    '''
 
     p = canvas.beginPath()
 

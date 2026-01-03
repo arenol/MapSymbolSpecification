@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <MapSymbolsSpec id="ISOM2017-2" version="6" language="en" issued-date="2024-15-01" valid-date="2025-01-01" mapscale="15000">
     <BaseColors>
+        <color id="PURPLE" cmyk="0.3,1,0,0" />
         <color id="BLACK" cmyk="0,0,0,1"/>
         <color id="BROWN" cmyk="0.25,0.75,1,0"/>
         <color id="CYAN" cmyk="1,0,0,0" />
-        <color id="PURPLE" cmyk="0.3,1,0,0" />
-        <color id="YELLOW" cmyk="0,0.25,1,0" />
         <color id="GREEN" cmyk="0.8,0,1,0" />
+        <color id="YELLOW" cmyk="0,0.25,1,0" />
     </BaseColors>
     <ColorLayers>
         <layer id="uprPurple" color="PURPLE"/>
@@ -64,6 +64,11 @@
             <hatch stroke="uprPurple" stroke-width="0.2" spacing="1.2" rotation="45"/>
             <hatch stroke="uprPurple" stroke-width="0.2" spacing="1.2" rotation="-45"/>
         </symbol>
-            
+        <symbol type="line" id="513.1" name="Wall">
+            <path stroke="black100" stroke-width="0.14" />
+            <stroke-decoration type="regular" spacing="2.0" offset="0.8">
+                <circle cx="0.0" cy="0.0" r="0.2" fill="black100"/>
+            </stroke-decoration>
+        </symbol>
     </Symbols>
 </MapSymbolsSpec>

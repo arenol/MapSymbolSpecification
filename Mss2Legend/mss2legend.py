@@ -4,21 +4,7 @@ from reportlab.pdfgen import canvas
 from reportlab.lib.pagesizes import A4
 from reportlab.lib.units import mm
 from MSSLegendDrawing import *
-
-
-
-def BailOut( errorMessage, params=None):
-    '''
-    Prints an error message and exits the program.
-    The errorMessage may contain %-place holders, 
-    and the params is a tuple with entries to insert.
-    '''
-
-    if params:
-        errorMessage = errorMessage % params
-        
-    print( "ERROR:", errorMessage)
-    sys.exit( 1)
+from MSSError import BailOut
 
 
 
