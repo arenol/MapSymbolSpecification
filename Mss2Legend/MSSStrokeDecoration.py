@@ -13,8 +13,8 @@ def CalcLineLengthFromDecoration( strokeDecoration, maxLen):
     offset = float(strokeDecoration.attrib['offset'])
     spacing = float(strokeDecoration.attrib['spacing'])
 
-    count = math.floor(maxLen - offset*2) / spacing
-    return spacing*count + 2*offset
+    count = math.floor((maxLen - offset*2) / spacing)
+    return round(spacing*count + 2*offset, 3)
     
 
 def DrawRegularStrokeDecoration( canvas, xs, ys, layerId, lineLen, strokeDecoration ):

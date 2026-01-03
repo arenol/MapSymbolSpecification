@@ -163,7 +163,7 @@ def CalcLineLengthFromDash( xmlPath, maxLen):
     if (dashLen == 0):
         return maxLen
     dashCount = math.floor((maxLen + dashArray[-1] + offset2x)/dashLen)
-    return (dashLen * dashCount - dashArray[-1]) - offset2x
+    return round((dashLen * dashCount - dashArray[-1]) - offset2x, 3)
 
 def CreatePolyFromRect( xc, yc, w, h):
     '''

@@ -284,8 +284,8 @@ class MSSLegendDrawer(object):
             if (part.tag == 'path'):
                 if ('stroke-dasharray' in part.attrib):
                     dashLen = CalcLineLengthFromDash( part, lineLen)
-            ## if (decorLen != lineLen) and (dashLen != lineLen) and (dashLen != decorLen):
-            ##    BailOut( "Error in symbol %s. Dash array do not match stroke decoration spacing", xmlSymbol.attrib['id'])
+            if (decorLen != lineLen) and (dashLen != lineLen) and (dashLen != decorLen):
+                BailOut( "Error in symbol %s. Dash array do not match stroke decoration spacing", xmlSymbol.attrib['id'])
 
         if (decorLen < lineLen):
             return decorLen
