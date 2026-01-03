@@ -52,6 +52,12 @@
         <symbol type="line" id="505" name="Footpath">
             <path stroke="black100" stroke-width="0.25" stroke-dasharray="2.0, 0.25" />
         </symbol>
+        <symbol type="line" id="510" name="Power line, cableway or skilift">
+            <path stroke="black100" stroke-width="0.14"  />
+            <stroke-decoration type="dash-point">
+                <path stroke="black100" stroke-width="0.14" d="M 0 -0.37 L 0 0.37"/>
+            </stroke-decoration>
+        </symbol>
         <symbol type="line" id="513.1" name="Wall">
             <path stroke="black100" stroke-width="0.14" />
             <stroke-decoration type="regular" spacing="2.0" offset="0.8">

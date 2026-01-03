@@ -264,12 +264,16 @@ class MSSLegendDrawer(object):
                 decorationType = part.attrib['type']
                 if (decorationType == 'regular'):
                     DrawRegularStrokeDecoration( self.canvas, xs, ys, layerId, lineLen, part)
+                elif (decorationType == 'dash-point'):
+                    DrawDashPointrStrokeDecoration( self.canvas, xs, ys, layerId, lineLen, part)
+                elif (decorationType == 'start-point'):
+                    DrawStartPointStrokeDecoration( self.canvas, xs, ys, layerId, lineLen, part)
+                elif (decorationType == 'end-point'):
+                    DrawEndPointStrokeDecoration( self.canvas, xs, ys, layerId, lineLen, part)
 
             # TODO: Add stroke decaration
 
-            # general problem. 
-            # 1. Find line Length, either from dash or stroke decoration
-            # 2. Draw each part
+  
 
     def CalcLineLength( self, xmlSymbol):
         # Calculates the length of the line so that dash pattern and/or stroke decoration
