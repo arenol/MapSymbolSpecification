@@ -19,8 +19,26 @@
         <layer id="yellow50" color="YELLOW" tint="0.5" />
     </ColorLayers>
     <Symbols>
+        <symbol type="line" id="101" name="Contour">
+            <path stroke="brown100" stroke-width="0.14" />
+        </symbol>
+        <symbol type="line" id="102" name="Index Contour">
+            <path stroke="brown100" stroke-width="0.25" />
+        </symbol>
         <symbol type="line" id="103" name="Form line">
             <path stroke="brown100" stroke-width="0.1" stroke-dasharray="2,0.2" stroke-dashoffset="1"/>
+        </symbol>
+        <symbol type="line" id="104" name="Earth bank">
+            <path stroke="brown100" stroke-width="0.25" />
+            <stroke-decoration type="regular" spacing="0.5" offset="0.07">
+                <path stroke="brown100" stroke-width="0.14" d="M 0 0 L 0 -0.47" />
+            </stroke-decoration>
+        </symbol>
+        <symbol type="line" id="105.1" name="Earth Wall">
+            <path stroke="brown100" stroke-width="0.18" />
+            <stroke-decoration type="regular" spacing="2.0" offset="0.77">
+                <circle fill="brown100" cx="0" cy="0" r="0.225" />
+            </stroke-decoration>
         </symbol>
         <symbol type="point" id="110" name="Elongated knoll">
             <path fill="brown100" d="M 0.0 0.4 C 0.112 0.4 0.2 0.224 0.2 0.0 C 0.2 -0.224 0.112 -0.4 0.0 -0.4 C -0.112 -0.4 -0.2 -0.224 -0.2 0.0 C -0.2 0.224 -0.112 0.4 0.0 0.4 Z" />

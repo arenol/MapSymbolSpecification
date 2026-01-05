@@ -37,7 +37,7 @@ class MSSLegendDrawer(object):
     
     # the vertical spacing between each line
     legend_vspacing = 6.5 # mm
-    legend_hspacing = 50
+    legend_hspacing = 80
     
     def __init__( self, theCanvas, xmlBaseColors, xmlColorLayers, xmlSymbols):
         '''
@@ -67,6 +67,7 @@ class MSSLegendDrawer(object):
         self.pageWidth, self.pageHeight = theCanvas._pagesize
         self.pageWidth /= mm
         self.pageHeight /= mm
+
         print( "Page size", self.pageWidth, self.pageHeight)
 
     def DrawSymbols( self):
@@ -79,9 +80,9 @@ class MSSLegendDrawer(object):
         None.
 
         '''
-        
-        x0 = 20
-        y0 = self.pageHeight - 20
+        margin = 20
+        x0 = margin
+        y0 = self.pageHeight - margin
         dy = self.legend_vspacing
 
         # draw symbols, color layer by color layer:
@@ -100,6 +101,11 @@ class MSSLegendDrawer(object):
                 elif (symbolType == 'line'):
                     self.DrawStrokeSymbol( xs, ys, layer, symbol)
                 ys -= dy
+                if ys < margin:
+                    ys = self.pageHeight  - margin
+                    xs += self.legend_hspacing
+
+
                     
         self.DrawNames( x0+10, y0, dy)
         
