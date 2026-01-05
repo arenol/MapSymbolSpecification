@@ -259,17 +259,20 @@ class MSSLegendDrawer(object):
                 stroke = part.attrib['stroke']
                 if (stroke == layerId):
                     self.SetStrokeStyle( part)
-                    self.DrawLegendLine( xs, ys, lineLen)
+                    strokeOffset = 0.0
+                    if ('stroke-offset' in part.attrib):
+                        strokeOffset = float(part.attrib['stroke-offset'])
+                    self.DrawLegendLine( xs, ys+strokeOffset, lineLen)
             if (part.tag == 'stroke-decoration'):
                 decorationType = part.attrib['type']
                 if (decorationType == 'regular'):
-                    DrawRegularStrokeDecoration( self.canvas, xs, ys, layerId, lineLen, part)
+                    DrawRegularStrokeDecoration( self, xs, ys, layerId, lineLen, part)
                 elif (decorationType == 'dash-point'):
-                    DrawDashPointrStrokeDecoration( self.canvas, xs, ys, layerId, lineLen, part)
+                    DrawDashPointrStrokeDecoration( self, xs, ys, layerId, lineLen, part)
                 elif (decorationType == 'start-point'):
-                    DrawStartPointStrokeDecoration( self.canvas, xs, ys, layerId, lineLen, part)
+                    DrawStartPointStrokeDecoration( self, xs, ys, layerId, lineLen, part)
                 elif (decorationType == 'end-point'):
-                    DrawEndPointStrokeDecoration( self.canvas, xs, ys, layerId, lineLen, part)
+                    DrawEndPointStrokeDecoration( self, xs, ys, layerId, lineLen, part)
 
             # TODO: Add stroke decaration
 

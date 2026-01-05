@@ -58,6 +58,13 @@
                 <path stroke="black100" stroke-width="0.14" d="M 0 -0.37 L 0 0.37"/>
             </stroke-decoration>
         </symbol>
+        <symbol type="line" id="511" name="Major power line (min. width)">
+            <path stroke="black100" stroke-width="0.14" stroke-offset="0.2"/>
+            <path stroke="black100" stroke-width="0.14" stroke-offset="-0.2"/>
+            <stroke-decoration type="dash-point">
+                <path stroke="black100" stroke-width="0.2" d="M 0 -0.57 L 0 0.57"/>
+            </stroke-decoration>
+        </symbol>
         <symbol type="line" id="513.1" name="Wall">
             <path stroke="black100" stroke-width="0.14" />
             <stroke-decoration type="regular" spacing="2.0" offset="0.8">

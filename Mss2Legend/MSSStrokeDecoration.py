@@ -16,19 +16,22 @@ def CalcLineLengthFromDecoration( strokeDecoration, maxLen):
     count = math.floor((maxLen - offset*2) / spacing)
     return round(spacing*count + 2*offset, 3)
     
-def _DrawDecoration( canvas, decParts, layerId):
+def _DrawDecoration( drawer, decParts, layerId):
+    canvas = drawer.canvas
     for part in decParts:
         if ("fill" in part.attrib):
             fillColor = part.attrib["fill"]
             if (fillColor == layerId):
                 DrawShape( canvas, part)
         if ("stroke" in part.attrib):
+            drawer.SetStrokeStyle( part)
             strokeColor =  part.attrib["stroke"]
             if (strokeColor == layerId):
                 DrawShape( canvas, part)
 
 
-def DrawRegularStrokeDecoration( canvas, xs, ys, layerId, lineLen, strokeDecoration ):
+def DrawRegularStrokeDecoration( drawer, xs, ys, layerId, lineLen, strokeDecoration ):
+    canvas = drawer.canvas
     offset = float(strokeDecoration.attrib['offset'])
     spacing = float(strokeDecoration.attrib['spacing'])
     x0 = xs - (lineLen * 0.5) + offset
@@ -36,34 +39,37 @@ def DrawRegularStrokeDecoration( canvas, xs, ys, layerId, lineLen, strokeDecorat
     canvas.saveState()
     canvas.translate( x0, ys)
     while (x0<x1):
-        _DrawDecoration( canvas, strokeDecoration, layerId)
+        _DrawDecoration( drawer, strokeDecoration, layerId)
         x0 += spacing
         canvas.translate( spacing,0)
     canvas.restoreState()
 
-def DrawDashPointrStrokeDecoration( canvas, xs, ys, layerId, lineLen, strokeDecoration ):
+def DrawDashPointrStrokeDecoration( drawer, xs, ys, layerId, lineLen, strokeDecoration ):
+    canvas = drawer.canvas
     spaceCount = 3  # will draw 3 elements
     spacing = lineLen / (spaceCount+1)   
     x0 = xs - lineLen / 2 + spacing
     canvas.saveState()
     canvas.translate( x0, ys)
-    _DrawDecoration( canvas, strokeDecoration, layerId)
+    _DrawDecoration( drawer, strokeDecoration, layerId)
 
     for i in range(spaceCount):
-        _DrawDecoration( canvas, strokeDecoration, layerId)
+        _DrawDecoration( drawer, strokeDecoration, layerId)
         canvas.translate( spacing,0)
     canvas.restoreState()
 
-def DrawStartPointStrokeDecoration( canvas, xs, ys, layerId, lineLen, strokeDecoration ):
+def DrawStartPointStrokeDecoration( drawer, xs, ys, layerId, lineLen, strokeDecoration ):
+    canvas = drawer.canvas
     canvas.saveState()
     canvas.translate( xs - lineLen/2, ys)
-    _DrawDecoration( canvas, strokeDecoration, layerId)
+    _DrawDecoration( drawer, strokeDecoration, layerId)
     canvas.restoreState()
 
-def DrawEndPointStrokeDecoration( canvas, xs, ys, layerId, lineLen, strokeDecoration ):
+def DrawEndPointStrokeDecoration( drawer, xs, ys, layerId, lineLen, strokeDecoration ):
+    canvas = drawer.canvas
     canvas.saveState()
     canvas.translate( xs + lineLen/2, ys)
-    _DrawDecoration( canvas, strokeDecoration, layerId)
+    _DrawDecoration( drawer, strokeDecoration, layerId)
     canvas.restoreState()
 
 
