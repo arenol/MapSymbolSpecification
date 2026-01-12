@@ -145,12 +145,29 @@ Additionally, if you want to have half a dash at the end, you can specify this w
 The dash-offset applies to both ends of the line. A dash-offset of "0.4" will shorten both end dashes by 0.4 mm.
 
 **Note:** For closed lines, such as form line hills, it is recommended practice to draw a half dash at the ends, making the dash across the endpoints be the correct length. This shall supress any dash-offset specified.
+
+### Line Caps and Line Joins
+The line caps specifies the shape of the end of the lines, and is specified using the **stroke-linecap** attribute. Legal values are:
+* "butt": The default.
+* "round": Draws a half circle at the end.
+* "square": Draws a half square at the end.
+* "pointed": Draws a pointed end. The length of the end is specified the **stroke-caplength** attribute.
+
+![Line Caps](https://www.w3.org/TR/2001/REC-SVG-20010904/images/painting/linecap.png)
+
+
+The line join specifies the how the angle between two segments are shaped, and is specified using the **stroke-linejoin** attributes. Legal values are:
+* "miter": The default value. To limit the the ratio of which the joint extends from the thickness of the line, you may use the **stroke-miterlimit** attribute. It's default value is 4.
+* "round": Will draw a circle at the joint.
+* "bevel"
+
+![Line Joinds](https://www.w3.org/TR/2001/REC-SVG-20010904/images/painting/linejoin.png)
     
 ### Decorated Line Symbols
 When point symbols are to be placed along the line, such as fence tags or power-line pylons this can be specified using the ***stroke-decoration*** element
 
     <symbol type="line" id="513.1" name="Wall" min-length="1.4">
-      <path stroke="upper black" stroke-width="0.14" line-join="round" line-cap="but" />
+      <path stroke="upper black" stroke-width="0.14" stroke-linejoin="round" stroke-linecap="butt" />
       <stroke-decoration type="regular" spacing="2.0" offset="0.8">
         <circle cx="0", cy="0" r="0.2" fill="upper black" />
       </stroke-decoration>

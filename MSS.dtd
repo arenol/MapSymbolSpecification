@@ -46,12 +46,13 @@
 
 <!ENTITY % stroke-style 
     'stroke-width   CDATA   #IMPLIED
-     stroke-linecap CDATA   "butt"
-     stroke-linejoin CDATA  "miter"
-     stroke-miterlimit CDATA "4"
+     stroke-linecap CDATA   (butt|square|round|pointed) "butt"
+     stroke-linejoin CDATA  (miter|round|bevel) "miter"
+     stroke-miterlimit CDATA "4"                    <!-- only used when linejoin is miter -->
      stroke-dasharray CDATA ""
      stroke-dahsoffset CDATA "0"
-     stroke-offset CDATA "0"'>
+     stroke-offset CDATA "0"
+     stroke-caplength CDATA #IMPLIED'>              <!-- only used when linecap is pointed -->
 
 <!ENTITY % text-style
     'font-familiy   CDATA "sans-serif"
