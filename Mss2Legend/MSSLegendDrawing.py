@@ -175,11 +175,14 @@ class MSSLegendDrawer(object):
 
         sDash, sDashOffset = ParseStrokeDash( xmlElement)
         if ('stroke-linecap' in xmlElement.attrib):
-            sCap = ['but','round','square'].index( xmlElement.attrib['stroke-linecap'])
+            sCap = ['but','round','square','pointed'].index( xmlElement.attrib['stroke-linecap'])
         if ('stroke-linejoin' in xmlElement.attrib):
             sJoin = ['miter','bevel','round'].index( xmlElement.attrib['stroke-linejoin'])
         if ('stroke-miterlimit' in xmlElement.attrib):
             sMiterLimit = float( xmlElement.attrib['stroke-miterlimit'])
+
+        if (sCap == 3):
+            sCap = 0    # pointed line caps is not legal in PDF and must be handled specially.
 
         self.canvas.setLineWidth( sWidth)
         self.canvas.setDash( sDash, sDashOffset)
@@ -269,6 +272,8 @@ class MSSLegendDrawer(object):
                     if ('stroke-offset' in part.attrib):
                         strokeOffset = float(part.attrib['stroke-offset'])
                     self.DrawLegendLine( xs, ys+strokeOffset, lineLen)
+                    if ('stroke-linecap' in part.attrib) and (part.attrib['stroke-linecap'] == 'pointed'):
+                        self.DrawPointedLineCaps( xs, ys, lineLen, part)
             if (part.tag == 'stroke-decoration'):
                 decorationType = part.attrib['type']
                 if (decorationType == 'regular'):
@@ -290,6 +295,7 @@ class MSSLegendDrawer(object):
         lineLen = self.legend_width
         decorLen = lineLen
         dashLen = lineLen
+        capLen = 0
         for part in xmlSymbol:
             if (part.tag == 'stroke-decoration'):
                 if (part.attrib['type'] == 'regular'):
@@ -297,12 +303,18 @@ class MSSLegendDrawer(object):
             if (part.tag == 'path'):
                 if ('stroke-dasharray' in part.attrib):
                     dashLen = CalcLineLengthFromDash( part, lineLen)
+                if ('stroke-linecap' in part.attrib) and part.attrib['stroke-linecap'] == 'pointed':
+                    if ('stroke-caplength' in part.attrib):
+                        capLen = float(part.attrib['stroke-caplength'])
+                    else:
+                        capLen = float(part.attrib['stroke-width'])
+                    lineLen -= (capLen * 2)
             if (decorLen != lineLen) and (dashLen != lineLen) and (dashLen != decorLen):
                 BailOut( "Error in symbol %s. Dash array do not match stroke decoration spacing", xmlSymbol.attrib['id'])
 
         if (decorLen < lineLen):
             return decorLen
-        return dashLen
+        return min( dashLen, lineLen)
         
 
                     
@@ -405,6 +417,24 @@ class MSSLegendDrawer(object):
         # TODO: This is just a straght line. Draw a more complex line to better
         # test stroke decorations.
         
+    def DrawPointedLineCaps( self, xs, ys, lineLen, xmlPath):
+        strokeWidth = float( xmlPath.attrib['stroke-width'])
+        if ('stroke-caplength' in xmlPath.attrib):
+            capLen = float( xmlPath.attrib['stroke-caplength'])
+        else:
+            capLen = strokeWidth
+        self._DrawPointedCap( xs - lineLen*0.5, ys, -1, capLen, strokeWidth)
+        self._DrawPointedCap( xs + lineLen*0.5, ys, 1, capLen, strokeWidth)
+
+    def _DrawPointedCap( self, x, y, dir, capLen, strokeWidth):
+        p = self.canvas.beginPath()
+        yu = y + strokeWidth*0.5    # upper y
+        yl = yu - strokeWidth       # lower y
+        p.moveTo( x, yu)
+        p.curveTo( x + capLen*0.25*dir, yu, x + capLen*0.5*dir, yu, x + capLen*dir, y)
+        p.curveTo( x + capLen*0.5*dir, yl,  x + capLen*0.25*dir, yl, x, yl)
+        p.close()
+        self.canvas.drawPath(p, stroke=0, fill=1)
 
 
     def DrawNames( self, x, starty, dy):
