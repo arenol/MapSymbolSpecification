@@ -272,14 +272,14 @@ class MSSLegendDrawer(object):
                     if ('stroke-offset' in part.attrib):
                         strokeOffset = float(part.attrib['stroke-offset'])
                     self.DrawLegendLine( xs, ys+strokeOffset, lineLen)
-                    if ('stroke-linecap' in part.attrib) and (part.attrib['stroke-linecap'] == 'pointed'):
-                        self.DrawPointedLineCaps( xs, ys, lineLen, part)
+#                    if ('stroke-linecap' in part.attrib) and (part.attrib['stroke-linecap'] == 'pointed'):
+#                        self.DrawPointedLineCaps( xs, ys, lineLen, part)
             if (part.tag == 'stroke-decoration'):
                 decorationType = part.attrib['type']
                 if (decorationType == 'regular'):
                     DrawRegularStrokeDecoration( self, xs, ys, layerId, lineLen, part)
                 elif (decorationType == 'dash-point'):
-                    DrawDashPointrStrokeDecoration( self, xs, ys, layerId, lineLen, part)
+                    DrawDashPointStrokeDecoration( self, xs, ys, layerId, lineLen, part)
                 elif (decorationType == 'start-point'):
                     DrawStartPointStrokeDecoration( self, xs, ys, layerId, lineLen, part)
                 elif (decorationType == 'end-point'):
@@ -295,7 +295,7 @@ class MSSLegendDrawer(object):
         lineLen = self.legend_width
         decorLen = lineLen
         dashLen = lineLen
-        capLen = 0
+ #       capLen = 0
         for part in xmlSymbol:
             if (part.tag == 'stroke-decoration'):
                 if (part.attrib['type'] == 'regular'):
@@ -303,12 +303,12 @@ class MSSLegendDrawer(object):
             if (part.tag == 'path'):
                 if ('stroke-dasharray' in part.attrib):
                     dashLen = CalcLineLengthFromDash( part, lineLen)
-                if ('stroke-linecap' in part.attrib) and part.attrib['stroke-linecap'] == 'pointed':
-                    if ('stroke-caplength' in part.attrib):
-                        capLen = float(part.attrib['stroke-caplength'])
-                    else:
-                        capLen = float(part.attrib['stroke-width'])
-                    lineLen -= (capLen * 2)
+#                if ('stroke-linecap' in part.attrib) and part.attrib['stroke-linecap'] == 'pointed':
+#                    if ('stroke-caplength' in part.attrib):
+#                        capLen = float(part.attrib['stroke-caplength'])
+#                    else:
+#                        capLen = float(part.attrib['stroke-width'])
+#                    lineLen -= (capLen * 2)
             if (decorLen != lineLen) and (dashLen != lineLen) and (dashLen != decorLen):
                 BailOut( "Error in symbol %s. Dash array do not match stroke decoration spacing", xmlSymbol.attrib['id'])
 

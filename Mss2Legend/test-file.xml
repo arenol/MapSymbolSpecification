@@ -19,6 +19,7 @@
         <layer id="yellow50" color="YELLOW" tint="0.5" />
     </ColorLayers>
     <Symbols>
+        <!-- RELIEF / LANDFORMS -->
         <symbol type="line" id="101" name="Contour">
             <path stroke="brown100" stroke-width="0.14" />
         </symbol>
@@ -40,12 +41,61 @@
                 <circle fill="brown100" cx="0" cy="0" r="0.225" />
             </stroke-decoration>
         </symbol>
-        <symbol type="line" id="107" name="Erosion gully">
-            <path  stroke="brown100" stroke-width="0.25" stroke-linecap="pointed" stroke-linejoin="round" stroke-caplength="0.75" />
+        <symbol type="line" id="105.2" name="Retaining earth wall">
+            <path stroke="brown100" stroke-width="0.18" />
+            <stroke-decoration type="regular" spacing="1.0" offset="0.8">
+                <path fill="brown100" d="M -0.225 0 C -0.225 -0.126 -0.100 -0.225 0 -0.225 C 0.1 -0.225 0.100 -0.225 0.225 -0.126 Z" />
+            </stroke-decoration>
         </symbol>
-        <symbol type="point" id="110" name="Elongated knoll">
+        <symbol type="line" id="106" name="Ruined earth wall">
+            <path stroke="brown100" stroke-width="0.18" stroke-dasharray="1.65,0.35" />
+            <stroke-decoration type="regular" spacing="2" offset="0.825">
+                <circle fill="brown100" cx="0" cy="0" r="0.225"/>
+            </stroke-decoration>
+        </symbol>
+        <symbol type="line" id="107" name="Erosion gully">
+            <path  stroke="brown100" stroke-width="0.25" stroke-linecap="round" stroke-linejoin="round" />
+            <stroke-decoration type="start-point">
+                <path fill="brown100" d="M 0 0.125 C -0.188 0.125 -0.375 0.125 -0.75 0 C -0.375 -0.125 -0.188 -0.125 0 -0.125 Z" />
+            </stroke-decoration>
+            <stroke-decoration type="end-point">
+                <path fill="brown100" d="M 0 0.125 C 0.188 0.125 0.375 0.125 0.75 0 C 0.375 -0.125 0.188 -0.125 0 -0.125 Z" />
+            </stroke-decoration>
+        </symbol>
+        <symbol type="line" id="108" name="Small erosion gully">
+            <path stroke="brown100" stroke-width="0.25" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="0,0.45" />
+        </symbol>
+        <symbol type="point" id="109" name="Small knoll">
+            <circle fill="brown100" cx="0" cy="0" r="0.25" />
+        </symbol>
+        <symbol type="point" id="110" name="Elongated knoll" rotatable="yes">
             <path fill="brown100" d="M 0.0 0.4 C 0.112 0.4 0.2 0.224 0.2 0.0 C 0.2 -0.224 0.112 -0.4 0.0 -0.4 C -0.112 -0.4 -0.2 -0.224 -0.2 0.0 C -0.2 0.224 -0.112 0.4 0.0 0.4 Z" />
         </symbol>
+        <symbol type="point" id="111" name="Small depression">
+            <path stroke="brown100" stroke-width="0.18" d="M -0.31 0.203 C -0.31 0.033 -0.174 -0.107 0 -0.107 C 0.174 -0.107 0.31 0.033 0.31 0.203" />
+        </symbol>
+        <symbol type="point" id="112" name="Pit">
+            <path fill="brown100" d="M 0 -0.489 L 0.35 0.313 L 0.154 0.313 L 0 -0.039 L -0.154  0.313 L -0.350 0.313 Z"/>
+        </symbol>
+        <symbol type="point" id="114.1" name="Broken ground, single dot">
+            <circle fill="brown100" cx="0" cy="0" r="0.1"/>
+        </symbol>
+        <symbol type="point" id="115" name="Prominent landform feature">
+            <path stroke="brown100" stroke-width="0.18" d="M 0 0.34 L 0.294 -0.170 L -0.294 -0.170 Z" />
+        </symbol>
+
+        <!-- ROCK AND BOULDER -->
+
+        <symbol type="line" id="201" name="Impassable Cliff" min-length="0.6">
+            <path stroke="black100" stroke-width="0.35" />
+            <stroke-decoration type="regular" spacing="0.5" offset="0.06">
+                <path stroke="black100" stroke-width="0.12" d="M 0 0 L 0 -0.5" />
+            </stroke-decoration>
+        </symbol>
+        <symbol type="line" id="202" name="Cliff" min-length="0-35">
+            <path stroke="black100" stroke-width="0.25" stroke-linecap="round" stroke-linejoin="round" />
+        </symbol>
+
 		<symbol type="point" id="204" name="Boulder">
             <description>A distinct boulder (should be higher than 1 m)</description>
             <circle cx="0" cy="0" r="0.2" fill="black100" />

@@ -99,7 +99,7 @@ Each symbol is followed by an optional ***description*** element providing  text
 ## Point Symbols
 The subsequent elements of a *point* symbol, is simply the graphical elements that makes up the point symbol. The initial example above gives an introductory example. The following example defines the high tower symbol (524):
 
-    <symbol type="point" id="524" name="High tower">
+    <symbol type="point" id="524" name="High tower" rotatable="no">
       <circle fill="black100" cx="0" cy="0" r="0.4" />
       <path stroke="black100" stroke-width="0.16" stroke-linecap="butt" 
             d="M 0.7 0.0 L -0.7 0.0" />
@@ -108,6 +108,8 @@ The subsequent elements of a *point* symbol, is simply the graphical elements th
     </symbol>
 
 The painting order of elements in a symbol is the last element on the bottom and the first element on top.
+
+Note that the **rotatable** attribute is optional and defaults to "no" if not specified.
 
 ## Line Symbols
 Line symbols simply sets up one or more graphical styles for a line. Additionally, it also specifies minimum lengths of the symbol. To define the line style, the SVG **path** element is used, but without the coordinates attribute (**d**).
@@ -151,7 +153,6 @@ The line caps specifies the shape of the end of the lines, and is specified usin
 * "butt": The default.
 * "round": Draws a half circle at the end.
 * "square": Draws a half square at the end.
-* "pointed": Draws a pointed end. The length of the end is specified the **stroke-caplength** attribute.
 
 ![Line Caps](https://www.w3.org/TR/2001/REC-SVG-20010904/images/painting/linecap.png)
 
@@ -214,7 +215,7 @@ Basic hatch patterns can be defined like this:
     </symbol>
     
     
-The **rotatable** attribute defaults to "no" and can be omitted. Symbols rotatable at object level must have the value "yes"
+The **rotatable** attribute defaults to "no" and can be omitted. Symbols that are rotatable at object level must have the value "yes"
 
 The default **rotation** value is "0" and yields a horizontal line with positive values representing counter-clockwise rotation.  
 

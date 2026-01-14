@@ -44,7 +44,7 @@ def DrawRegularStrokeDecoration( drawer, xs, ys, layerId, lineLen, strokeDecorat
         canvas.translate( spacing,0)
     canvas.restoreState()
 
-def DrawDashPointrStrokeDecoration( drawer, xs, ys, layerId, lineLen, strokeDecoration ):
+def DrawDashPointStrokeDecoration( drawer, xs, ys, layerId, lineLen, strokeDecoration ):
     canvas = drawer.canvas
     spaceCount = 3  # will draw 3 elements
     spacing = lineLen / (spaceCount+1)   
