@@ -148,21 +148,6 @@ The dash-offset applies to both ends of the line. A dash-offset of "0.4" will sh
 
 **Note:** For closed lines, such as form line hills, it is recommended practice to draw a half dash at the ends, making the dash across the endpoints be the correct length. This shall supress any dash-offset specified.
 
-### Line Caps and Line Joins
-The line caps specifies the shape of the end of the lines, and is specified using the **stroke-linecap** attribute. Legal values are:
-* "butt": The default.
-* "round": Draws a half circle at the end.
-* "square": Draws a half square at the end.
-
-![Line Caps](https://www.w3.org/TR/2001/REC-SVG-20010904/images/painting/linecap.png)
-
-
-The line join specifies the how the angle between two segments are shaped, and is specified using the **stroke-linejoin** attributes. Legal values are:
-* "miter": The default value. To limit the the ratio of which the joint extends from the thickness of the line, you may use the **stroke-miterlimit** attribute. It's default value is 4.
-* "round": Will draw a circle at the joint.
-* "bevel"
-
-![Line Joinds](https://www.w3.org/TR/2001/REC-SVG-20010904/images/painting/linejoin.png)
     
 ### Decorated Line Symbols
 When point symbols are to be placed along the line, such as fence tags or power-line pylons this can be specified using the ***stroke-decoration*** element
@@ -322,13 +307,21 @@ The following attributes are supported by line symbols.
 If any of the entries are missing, the default value is assumed. The only mandatory attribute is the **stroke-width** attribute
 
 * **stroke-width:** This is a required element and there is no default value. Specifies the stroke width in millimeters.
-* **stroke-linecap:** Specifies the shape of the line ends. Legal values are *butt*, *round*, *square* and *pointed*. Default value is *butt*.
-* **stroke-linejoin:** Specifies the shape of corners of a line. Legal values are *miter*, *bevel* and *round*. Default value is *miter*.
+* **stroke-linecap:** Specifies the shape of the line ends. Legal values are *butt*, *round*, and *square*
+* Default value is *butt*. See illustration below.
+* **stroke-linejoin:** Specifies the shape of corners of a line. Legal values are *miter*, *bevel* and *round*. Default value is *miter*. See illustration below.
 * **stroke-miterlimit:** Specifies a limit on the ratio of the miter length to the stroke width in a miter join. If the ratio is exceeded, the join is changed into a bevel join. The default value is 4.
-* **stroke-caplength:** Specifies the length of the pointed section of a *pointed* linecap. If one value is provided, applies to both ends. If two values are supplied (comma-separated), applies the to start and the end of the line, respectively. Defaults to the *stroke-with* if omitted.
 * **stroke-dasharray:** Specifies a comma-separated list of alternating dash and gap lengths. Makes a solid stroke if omitted.
 * **stroke-dashoffset:** Specifies an offset of the dash pattern at both ends. That is the first and last dash will be shortened by the specified amount.
 * **stroke-offset:** Specifies the offset of a line. Positive values are to he left in the drawing directions, negative to the right.
+
+Stroke-linecap values:
+
+![Line Caps](https://www.w3.org/TR/2001/REC-SVG-20010904/images/painting/linecap.png)
+
+Stroke-linejoin values:
+
+![Line Joids](https://www.w3.org/TR/2001/REC-SVG-20010904/images/painting/linejoin.png)
 
 The following attributes applies to text objects (note that text objects may also have stroke styles if stroked)
 
@@ -339,4 +332,7 @@ The following attributes applies to text objects (note that text objects may als
 * **text-decoration:** May be *none*, or *underline*. Default is none.
 
 Other text attributes, such as text alignment and letter spacing, should be defined at object level.
+
+
+
 

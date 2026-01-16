@@ -54,6 +54,7 @@ def DrawPattern( legend, layer, pattern, poly):
     y0 = float(pattern.attrib['y'])
     tileWidth = float(pattern.attrib['width'])
     tileHeight = float(pattern.attrib['height'])
+    noClip = ('clip' in pattern.attrib and pattern.attrib['clip'] != 'yes')
     
     angle = 0
             
@@ -75,8 +76,10 @@ def DrawPattern( legend, layer, pattern, poly):
 
             clipPoly = CreatePolyFromBounds( x0, y0, x0+tileWidth, y+tileHeight)
             clipPath = CreatePathFromPoly( legend.canvas, clipPoly, True)
-            legend.canvas.clipPath( clipPath, fill=0, stroke=0)
-            legend.DrawPointSymbol(x0,y0,layer,pattern)
+
+            if (not noClip):
+                legend.canvas.clipPath( clipPath, fill=0, stroke=0)
+            legend.DrawPointSymbol(0,0,layer,pattern)
             legend.canvas.restoreState()
             
             x += tileWidth

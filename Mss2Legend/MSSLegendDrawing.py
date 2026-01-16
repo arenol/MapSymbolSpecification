@@ -227,9 +227,15 @@ class MSSLegendDrawer(object):
         layerId = layer.attrib['id']
         for part in symbol:
             if (part.tag == 'path'):
-                fill = part.attrib['fill']
-                if (fill == layerId):
-                    self.DrawLegendArea( xs, ys)
+                if ('fill' in part.attrib):
+                    fill = part.attrib['fill']
+                    if (fill == layerId):
+                        self.DrawLegendArea( xs, ys)
+                if ('stroke' in part.attrib):
+                    stroke = part.attrib['stroke']
+                    if (stroke == layerId):
+                        self.SetStrokeStyle( part)
+                        self.DrawLegendAreaOutline(xs, ys)
             if (part.tag == 'hatch'):
                 stroke = part.attrib['stroke']
                 if (stroke == layerId):
@@ -374,6 +380,13 @@ class MSSLegendDrawer(object):
         height = self.legend_height
         self.canvas.rect( x-width*0.5, y-height*0.5, width, height, fill=1, stroke=0)
     
+
+    def DrawLegendAreaOutline( self, x, y):
+        width = self.legend_width
+        height = self.legend_height
+        self.canvas.rect( x-width*0.5, y-height*0.5, width, height, fill=0, stroke=1)
+        
+
     def DrawLegendHatch( self, xs, ys, hatch):
         '''
         Draws a hatched area centered at x, y
